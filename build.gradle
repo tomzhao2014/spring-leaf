@@ -1,0 +1,83 @@
+// gradle插件
+buildscript {
+    repositories {
+        jcenter { url "http://jcenter.bintray.com/" }
+        maven { url "https://plugins.gradle.org/m2/" }
+        //maven {url "http://nexus.teems.cn/content/groups/public/"}
+        //maven{url "http://maven.oschina.net/content/groups/public/"}
+    }
+    //依赖不在maven库中的插件
+    dependencies {
+        // 远程布署插件
+        classpath "org.hidetake:gradle-ssh-plugin:1.1.3"
+        // web容器，支持jetty和tomcat
+        classpath "org.akhikhl.gretty:gretty:1.2.4"
+
+    }
+}
+apply plugin: 'groovy'
+apply plugin: 'war'
+apply plugin: "org.akhikhl.gretty"
+apply plugin: "org.hidetake.ssh"
+group = "com.tom.webframework"
+version = "1.0"
+
+// 全局属性设置
+ext {
+    junitVersion = "4.11"
+    springVersion = "4.2.2.RELEASE"
+    // java文件编码方式设置为utf-8
+    compileJava.options.encoding = 'UTF-8'
+}
+repositories{
+    maven{url "http://maven.oschina.net/content/groups/public/"}
+    maven {url "http://nexus.teems.cn/content/groups/public/"}
+    maven { url "https://plugins.gradle.org/m2/" }
+}
+
+dependencies {
+    compile (
+            'org.springframework:spring-webmvc:4.2.2.RELEASE',
+            'org.springframework:spring-jdbc:4.2.2.RELEASE',
+            'org.mybatis:mybatis:3.3.0',
+            'org.mybatis:mybatis-spring:1.2.3',
+            'com.alibaba:druid:1.0.15',
+            'com.fasterxml.jackson.core:jackson-core:2.6.3',
+            'com.fasterxml.jackson.core:jackson-annotations:2.6.3',
+            'com.fasterxml.jackson.core:jackson-databind:2.6.3',
+            'mysql:mysql-connector-java:5.1.36',
+            'commons-fileupload:commons-fileupload:1.2.2',
+            'commons-httpclient:commons-httpclient:3.1',
+            'commons-lang:commons-lang:2.6',
+            'com.fasterxml.jackson.core:jackson-core:2.6.1',
+            'org.codehaus.groovy:groovy-all:2.4.5'
+    )
+
+    providedCompile(
+            "javax.servlet:javax.servlet-api:3.1.0",
+            "javax.servlet.jsp:jsp-api:2.2",
+            "javax.servlet:jstl:1.2",
+            'javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1'
+
+    )
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+
+// 使用gretty插件运行web工程
+gretty {
+    httpPort = 8081
+    debugPort = httpPort + 1
+    servicePort = httpPort + 2
+    statusPort = httpPort + 3
+    httpsPort = httpPort + 4
+    httpsEnabled = true
+    contextPath = '/'
+    jvmArgs = ['-Xmx1024M', '-XX:PermSize=128M', '-XX:MaxPermSize=256M']
+    servletContainer = 'jetty9'
+    scanInterval = 0
+    inplaceMode = 'hard'
+    debugSuspend = true
+}
+
+
