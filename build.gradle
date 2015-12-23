@@ -76,7 +76,7 @@ gretty {
     jvmArgs = ['-Xmx1024M', '-XX:PermSize=128M', '-XX:MaxPermSize=256M']
     servletContainer = 'jetty9'
     scanInterval = 0
-    inplaceMode = 'hard'
+    //inplaceMode = 'hard'
     debugSuspend = true
 }
 
