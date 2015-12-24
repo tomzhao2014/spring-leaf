@@ -38,9 +38,9 @@ sourceSets.main.groovy.srcDirs += ["src/main/java"]
 
 dependencies {
     compile (
-            'org.springframework:spring-webmvc:4.2.3.RELEASE',
-            'org.springframework:spring-jdbc:4.2.3.RELEASE',
-            'org.springframework:spring-websocket:4.2.2.RELEASE',
+            'org.springframework:spring-webmvc:4.2.4.RELEASE',
+            'org.springframework:spring-jdbc:4.2.4.RELEASE',
+            'org.springframework:spring-websocket:4.2.4.RELEASE',
             'org.mybatis:mybatis:3.3.0',
             'org.mybatis:mybatis-spring:1.2.3',
             'com.alibaba:druid:1.0.15',
