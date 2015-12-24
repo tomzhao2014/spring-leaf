@@ -17,6 +17,7 @@ buildscript {
 }
 apply plugin: 'groovy'
 apply plugin: 'war'
+apply plugin: 'idea'
 apply plugin: "org.akhikhl.gretty"
 apply plugin: "org.hidetake.ssh"
 group = "com.tom.webframework"
@@ -24,8 +25,6 @@ version = "1.0"
 
 // 全局属性设置
 ext {
-    junitVersion = "4.11"
-    springVersion = "4.2.2.RELEASE"
     // java文件编码方式设置为utf-8
     compileJava.options.encoding = 'UTF-8'
 }
@@ -34,11 +33,14 @@ repositories{
     maven {url "http://nexus.teems.cn/content/groups/public/"}
     maven { url "https://plugins.gradle.org/m2/" }
 }
+sourceSets.main.java.srcDirs = []
+sourceSets.main.groovy.srcDirs += ["src/main/java"]
 
 dependencies {
     compile (
-            'org.springframework:spring-webmvc:4.2.2.RELEASE',
-            'org.springframework:spring-jdbc:4.2.2.RELEASE',
+            'org.springframework:spring-webmvc:4.2.3.RELEASE',
+            'org.springframework:spring-jdbc:4.2.3.RELEASE',
+            'org.springframework:spring-websocket:4.2.2.RELEASE',
             'org.mybatis:mybatis:3.3.0',
             'org.mybatis:mybatis-spring:1.2.3',
             'com.alibaba:druid:1.0.15',
@@ -52,7 +54,6 @@ dependencies {
             'com.fasterxml.jackson.core:jackson-core:2.6.1',
             'org.codehaus.groovy:groovy-all:2.4.5'
     )
-
     providedCompile(
             "javax.servlet:javax.servlet-api:3.1.0",
             "javax.servlet.jsp:jsp-api:2.2",
