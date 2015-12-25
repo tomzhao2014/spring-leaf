@@ -1,5 +1,6 @@
 package com.tomweb.config;
 
+import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -9,7 +10,7 @@ import javax.servlet.Filter;
 /**
  * Created by tom on 15/12/22.
  */
-public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer implements AbstractSecurityWebApplicationInitializer {
     @Override
     protected String[] getServletMappings() {
         return new String[] { "/" };
