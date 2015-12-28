@@ -54,7 +54,19 @@ dependencies {
             'com.fasterxml.jackson.core:jackson-core:2.6.1',
             'org.codehaus.groovy:groovy-all:2.4.5',
             'org.springframework.security:spring-security-web:4.0.3.RELEASE',
-            'org.springframework.security:spring-security-config:4.0.3.RELEASE'
+            'org.springframework.security:spring-security-config:4.0.3.RELEASE',
+            'commons-logging:commons-logging:1.2',
+            'org.springframework:spring-jms:4.2.4.RELEASE',
+            'javax.jms:jms:1.1',
+            'org.apache.activemq:activemq-client:5.13.0',
+            'org.apache.activemq:activemq-spring:5.13.0',
+            'javax.mail:mail:1.4.7'
+
+
+
+
+
+
 
 
     )
