@@ -1,4 +1,4 @@
-package com.tom.demo
+package com.tom.demo.mybatis
 
 import org.apache.ibatis.io.Resources
 import org.apache.ibatis.session.SqlSessionFactory
@@ -12,6 +12,7 @@ class MybatisDemo {
         def source="/mybatis-config.xml"
         InputStream inputStream = Resources.getResourceAsStream(source)
         SqlSessionFactory sessionFactory = SqlSessionFactoryBuilder.build(inputStream)
+
 
     }
 
