@@ -1,5 +1,7 @@
 package com.tomweb.Entity
 
+import com.tomweb.core.entity.BaseEntity
+
 /**
  *
  *
@@ -14,7 +16,7 @@ package com.tomweb.Entity
  * Date: 2015/12/24 0024 
  * Time: 14:47 
  */
-class Member {
+class Member extends BaseEntity{
 
     Member(){
         println(this)
