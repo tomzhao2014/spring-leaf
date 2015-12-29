@@ -1,8 +1,12 @@
 package com.tomweb.message.jms;
 
+
+import org.apache.activemq.command.ActiveMQQueue;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.util.Assert;
 
-import javax.print.attribute.standard.Destination;
+import javax.jms.Destination;
+
 
 /**
  * Created with IntelliJ IDEA.

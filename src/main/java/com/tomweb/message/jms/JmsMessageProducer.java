@@ -1,5 +1,9 @@
 package com.tomweb.message.jms;
 
+
+import org.springframework.jms.core.JmsTemplate;
+import javax.jms.Queue;
+
 /**
  * Created with IntelliJ IDEA.
  * Anthor: Tom Zhao
@@ -8,7 +12,7 @@ package com.tomweb.message.jms;
  */
 public class JmsMessageProducer
 {
-   /* private JmsTemplate jmsTemplate;
+    private JmsTemplate jmsTemplate;
     private Queue destination;
 
     public void produceMessage(JmsMessage message)
@@ -22,5 +26,5 @@ public class JmsMessageProducer
 
     public void setDestination(Queue destination) {
         this.destination = destination;
-    }*/
+    }
 }
