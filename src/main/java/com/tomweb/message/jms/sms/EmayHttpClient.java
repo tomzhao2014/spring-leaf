@@ -173,7 +173,7 @@ public class EmayHttpClient
     {
         EmayHttpClient client = new EmayHttpClient();
 
-        client.sendSMS(new String[] { "15800581845", "18616637840" },
+        client.sendSMS(new String[] { "13918671905" },
                 "【泛微】xxx同意了您加入xxxx团队协作空间的申请,请登录www.eteams.cn开始使用。");
 
         String balance = client.getBalance();

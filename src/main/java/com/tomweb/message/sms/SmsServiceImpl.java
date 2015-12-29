@@ -12,8 +12,7 @@ import java.util.Map;
  * Created by tom on 15/12/28.
  */
 @Service
-public class SmsServiceImpl
-        implements SmsService
+public class SmsServiceImpl implements SmsService
 {
 
     @Autowired

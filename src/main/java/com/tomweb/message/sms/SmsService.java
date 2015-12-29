@@ -5,6 +5,7 @@ package com.tomweb.message.sms;
  *
  * @author Tom Zhao
  * @date 2015/12/28 0028
+ * 短信接口
  */
 public abstract interface SmsService
 {
