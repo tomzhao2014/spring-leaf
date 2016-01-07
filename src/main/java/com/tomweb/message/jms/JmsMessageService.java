@@ -21,6 +21,7 @@ public class JmsMessageService
 
     public void createMessage(JmsMessage message)
     {
+
         produceMessage(this.defaultDestination, message);
     }
 
