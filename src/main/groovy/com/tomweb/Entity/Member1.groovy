@@ -16,9 +16,9 @@ import com.tomweb.core.entity.BaseEntity
  * Date: 2015/12/24 0024 
  * Time: 14:47 
  */
-class Member extends BaseEntity{
+class Member1 extends BaseEntity{
 
-    Member(){
+    Member1(){
         println(this)
     }
 

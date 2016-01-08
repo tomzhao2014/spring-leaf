@@ -1,6 +1,6 @@
 package com.tomweb.web.controller;
 
-import com.tomweb.Entity.Member;
+import com.tomweb.Entity.Member1;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
     @RequestMapping(method = RequestMethod.GET)
     public String index(){
-        Member member = new Member();
+        Member1 member = new Member1();
         return  "index";
     }
 }

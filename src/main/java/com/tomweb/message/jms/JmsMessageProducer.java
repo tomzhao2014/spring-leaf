@@ -17,14 +17,17 @@ public class JmsMessageProducer
 
     public void produceMessage(JmsMessage message)
     {
+
         this.jmsTemplate.convertAndSend(this.destination, message);
     }
 
     public void setJmsTemplate(JmsTemplate jmsTemplate) {
+
         this.jmsTemplate = jmsTemplate;
     }
 
     public void setDestination(Queue destination) {
+
         this.destination = destination;
     }
 }
