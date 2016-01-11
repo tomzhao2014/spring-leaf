@@ -5,11 +5,20 @@ import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 /**
  * Created by tom on 15/12/22.
  */
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        servletContext.setInitParameter("log4jConfigLocation","classpath:log4j.properties");
+        super.onStartup(servletContext);
+    }
+
     @Override
     protected String[] getServletMappings() {
         return new String[] { "/" };
@@ -31,6 +40,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         HiddenHttpMethodFilter hiddenHttpMethodFilter = new HiddenHttpMethodFilter();
         return new Filter[]{characterEncodingFilter,hiddenHttpMethodFilter};
     }
+
 
   
 }

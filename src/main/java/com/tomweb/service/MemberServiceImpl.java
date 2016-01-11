@@ -1,9 +1,10 @@
 package com.tomweb.service;
 
+import com.tomweb.Entity.Member;
 import com.tomweb.core.repository.EntityRepository;
 import com.tomweb.core.service.BaseEntityService;
 
-import com.tomweb.entity.Member;
+import com.tomweb.entity.Member2;
 import com.tomweb.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
