@@ -1,22 +1,20 @@
 package com.tomweb.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.tomweb.core.SpringContext;
 import com.tomweb.core.orm.mybatis.MybatisSessionFactoryBean;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
@@ -30,6 +28,7 @@ import javax.sql.DataSource;
 @PropertySource("classpath:/application-develop.properties")
 @Import({JmsConfig.class})
 @EnableTransactionManagement
+@EnableScheduling
 //@ImportResource("classpath:system-config.xml")
 public class RootConfig {
 
@@ -52,7 +51,7 @@ public class RootConfig {
         System.out.println("===============" + username);
         dataSource.setUrl("jdbc:mysql://localhost:3306/bxwd?userUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull");
         dataSource.setUsername("root");
-        dataSource.setPassword("");
+        dataSource.setPassword("123456");
         dataSource.setInitialSize(1);
         dataSource.setMinIdle(1);
         dataSource.setMaxActive(19);
