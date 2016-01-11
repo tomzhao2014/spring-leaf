@@ -3,14 +3,19 @@ package com.tomweb.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.tomweb.core.SpringContext;
 import com.tomweb.core.orm.mybatis.MybatisSessionFactoryBean;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -25,8 +30,10 @@ import javax.sql.DataSource;
 @PropertySource("classpath:/application-develop.properties")
 @Import({JmsConfig.class})
 @EnableTransactionManagement
-@ImportResource("classpath:system-config.xml")
+//@ImportResource("classpath:system-config.xml")
 public class RootConfig {
+
+    private Log log = LogFactory.getLog(RootConfig.class);
 
     @Value("${jdbc.url}")
     private String url;
@@ -39,12 +46,13 @@ public class RootConfig {
 
     @Bean(initMethod = "init",destroyMethod = "close")
     public DataSource dataSource(){
+        log.debug("数据源配置");
         DruidDataSource dataSource = new DruidDataSource();
         System.out.println("======1111========="+url);
         System.out.println("===============" + username);
-        dataSource.setUrl(url);
-        dataSource.setUsername(username);
-        dataSource.setPassword(password);
+        dataSource.setUrl("jdbc:mysql://localhost:3306/bxwd?userUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull");
+        dataSource.setUsername("root");
+        dataSource.setPassword("");
         dataSource.setInitialSize(1);
         dataSource.setMinIdle(1);
         dataSource.setMaxActive(19);
@@ -64,10 +72,11 @@ public class RootConfig {
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         MybatisSessionFactoryBean sqlSessionFactory = new MybatisSessionFactoryBean();
         sqlSessionFactory.setPackagesToScan(new String[]{"com.tomweb.entity"});
-        Resource resource = new ClassPathResource("classpath:mybatis-config.xml");
+        Resource resource = new ClassPathResource("/mybatis-config.xml");
         sqlSessionFactory.setConfigLocation(resource);
-        Resource resource1 = new ClassPathResource("classpath*:/mapper/*.xml");
-        sqlSessionFactory.setMapperLocations(new Resource[]{resource1});
+        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        Resource[] resource1 = resolver.getResources("/mapper/*.xml");
+        sqlSessionFactory.setMapperLocations(resource1);
         sqlSessionFactory.setDataSource(dataSource());
 
         return sqlSessionFactory.getObject();
@@ -86,5 +95,10 @@ public class RootConfig {
         return dataSourceTransactionManager;
     }
 
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
 
 }

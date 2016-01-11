@@ -4,7 +4,7 @@ package com.tomweb.entity;
 /**
  * Created by tom on 15/12/12.
  */
-public class Member extends BaseDomainEntity{
+public class Member2 extends BaseDomainEntity{
 
     private String nikeName;
     private String type;
