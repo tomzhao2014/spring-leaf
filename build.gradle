@@ -62,8 +62,8 @@ dependencies {
             'org.apache.activemq:activemq-spring:5.13.0',
             'javax.mail:mail:1.4.7',
             'log4j:log4j:1.2.17',
-            'org.thymeleaf:thymeleaf:2.1.4.RELEASE',
-            'org.thymeleaf:thymeleaf-spring4:2.1.4.RELEASE'
+            'org.springframework.amqp:spring-rabbit:1.5.3.RELEASE'
+
 
 
     )
@@ -94,4 +94,8 @@ gretty {
     debugSuspend = true
 }
 
-
+/*
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+*/

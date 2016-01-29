@@ -26,7 +26,8 @@ import javax.sql.DataSource;
 @Configuration
 @ComponentScan(basePackages={"com.tomweb"}, excludeFilters={@ComponentScan.Filter(type= FilterType.ANNOTATION, value=EnableWebMvc.class)})
 @PropertySource("classpath:/application-develop.properties")
-@Import({JmsConfig.class})
+@Import({JmsConfig.class,AmqpConfig.class})
+
 @EnableTransactionManagement
 @EnableScheduling
 //@ImportResource("classpath:system-config.xml")
