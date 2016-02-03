@@ -15,55 +15,63 @@ buildscript {
 
     }
 }
-apply plugin: 'groovy'
-apply plugin: 'war'
-apply plugin: 'idea'
+apply plugin: "groovy"
+apply plugin: "war"
+apply plugin: "idea"
 apply plugin: "org.akhikhl.gretty"
 apply plugin: "org.hidetake.ssh"
 group = "com.tom.webframework"
 version = "1.0"
+sourceCompatibility = 1.8
 
 // 全局属性设置
 ext {
     // java文件编码方式设置为utf-8
-    compileJava.options.encoding = 'UTF-8'
+    compileJava.options.encoding = "UTF-8"
+    reactorVersion = "2.0.7.RELEASE"
+    springVersion = "4.2.4.RELEASE"
+    jacksonVersion = "2.6.3"
 }
 repositories{
     maven{url "http://maven.oschina.net/content/groups/public/"}
     maven {url "http://nexus.teems.cn/content/groups/public/"}
     maven { url "https://plugins.gradle.org/m2/" }
+    maven { url 'http://repo.spring.io/libs-release' }
 }
 sourceSets.main.java.srcDirs = []
 sourceSets.main.groovy.srcDirs += ["src/main/java"]
 
 dependencies {
     compile (
-            'org.springframework:spring-webmvc:4.2.4.RELEASE',
-            'org.springframework:spring-jdbc:4.2.4.RELEASE',
-            'org.springframework:spring-websocket:4.2.4.RELEASE',
-            'org.mybatis:mybatis:3.3.0',
-            'org.mybatis:mybatis-spring:1.2.3',
-            'com.alibaba:druid:1.0.15',
-            'com.fasterxml.jackson.core:jackson-core:2.6.3',
-            'com.fasterxml.jackson.core:jackson-annotations:2.6.3',
-            'com.fasterxml.jackson.core:jackson-databind:2.6.3',
-            'mysql:mysql-connector-java:5.1.36',
-            'commons-fileupload:commons-fileupload:1.2.2',
-            'commons-httpclient:commons-httpclient:3.1',
-            'commons-lang:commons-lang:2.6',
-            'com.fasterxml.jackson.core:jackson-core:2.6.1',
-            'org.codehaus.groovy:groovy-all:2.4.5',
-            'org.springframework.security:spring-security-web:4.0.3.RELEASE',
-            'org.springframework.security:spring-security-config:4.0.3.RELEASE',
-            'commons-logging:commons-logging:1.2',
-            'org.springframework:spring-jms:4.2.4.RELEASE',
-            'javax.jms:jms:1.1',
-            'org.apache.activemq:activemq-client:5.13.0',
-            'org.apache.activemq:activemq-spring:5.13.0',
-            'javax.mail:mail:1.4.7',
-            'log4j:log4j:1.2.17',
-            'org.springframework.amqp:spring-rabbit:1.5.3.RELEASE'
-
+            "org.springframework:spring-webmvc:$springVersion",
+            "org.springframework:spring-jdbc:$springVersion",
+            "org.springframework:spring-websocket:$springVersion",
+            "org.mybatis:mybatis:3.3.0",
+            "org.mybatis:mybatis-spring:1.2.3",
+            "com.alibaba:druid:1.0.15",
+            "com.fasterxml.jackson.core:jackson-core: $jacksonVersion",
+            "com.fasterxml.jackson.core:jackson-annotations: $jacksonVersion",
+            "com.fasterxml.jackson.core:jackson-databind: $jacksonVersion",
+            "mysql:mysql-connector-java:5.1.36",
+            "commons-fileupload:commons-fileupload:1.2.2",
+            "commons-httpclient:commons-httpclient:3.1",
+            "commons-lang:commons-lang:2.6",
+            "com.fasterxml.jackson.core:jackson-core:2.6.1",
+            "org.codehaus.groovy:groovy-all:2.4.5",
+            "org.springframework.security:spring-security-web:4.0.3.RELEASE",
+            "org.springframework.security:spring-security-config:4.0.3.RELEASE",
+            "commons-logging:commons-logging:1.2",
+            "org.springframework:spring-jms:$springVersion",
+            "javax.jms:jms:1.1",
+            "org.apache.activemq:activemq-client:5.13.0",
+            "org.apache.activemq:activemq-spring:5.13.0",
+            "javax.mail:mail:1.4.7",
+            "log4j:log4j:1.2.17",
+            "org.springframework.amqp:spring-rabbit:1.5.3.RELEASE",
+            // Reactor Core
+            "io.projectreactor:reactor-core:$reactorVersion",
+            "io.projectreactor:reactor-stream:$reactorVersion",
+            "io.projectreactor.spring:reactor-spring-context:$reactorVersion"
 
 
     )
@@ -71,10 +79,10 @@ dependencies {
             "javax.servlet:javax.servlet-api:3.1.0",
             "javax.servlet.jsp:jsp-api:2.2",
             "javax.servlet:jstl:1.2",
-            'javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1'
+            "javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1"
 
     )
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile group: "junit", name: "junit", version: "4.11"
 }
 
 
@@ -86,16 +94,16 @@ gretty {
     statusPort = httpPort + 3
     httpsPort = httpPort + 4
     httpsEnabled = true
-    contextPath = '/'
-    jvmArgs = ['-Xmx1024M', '-XX:PermSize=128M', '-XX:MaxPermSize=256M']
-    servletContainer = 'jetty9'
+    contextPath = "/"
+    jvmArgs = ["-Xmx1024M", "-XX:PermSize=128M", "-XX:MaxPermSize=256M"]
+    servletContainer = "jetty9"
     scanInterval = 0
-    //inplaceMode = 'hard'
+    //inplaceMode = "hard"
     debugSuspend = true
 }
 
 /*
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.3'
+    gradleVersion = "2.3"
 }
 */
