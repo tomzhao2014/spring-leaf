@@ -1,20 +1,8 @@
 package com.tomweb.config;
 
 
-import com.tomweb.message.jms.JmsMessageConsumer;
-import com.tomweb.message.jms.JmsMessageService;
-import org.apache.activemq.ActiveMQConnectionFactory;
-import org.apache.activemq.command.ActiveMQQueue;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
-import org.springframework.jms.connection.CachingConnectionFactory;
-import org.springframework.jms.core.JmsTemplate;
-import org.springframework.jms.listener.adapter.MessageListenerAdapter;
-import org.springframework.jms.support.converter.SimpleMessageConverter;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,7 +14,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 @PropertySource("classpath:/application-develop.properties")
 public class JmsConfig {
 
-    @Autowired
+   /* @Autowired
     Environment environment;
 
     @Bean
@@ -93,7 +81,7 @@ public class JmsConfig {
         threadPoolTaskExecutor.setAllowCoreThreadTimeOut(true);
         return  threadPoolTaskExecutor;
 
-    }
+    }*/
 
 
 

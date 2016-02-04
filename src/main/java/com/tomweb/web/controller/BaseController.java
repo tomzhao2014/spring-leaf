@@ -74,7 +74,7 @@ public abstract class BaseController<T> implements Serializable {
 	 * @return
 	 */
 	public String index(){
-		return "";
+		return "list";
 	}
 	
 	/**
@@ -82,7 +82,7 @@ public abstract class BaseController<T> implements Serializable {
 	 * @return
 	 */
 	public String show(Long id) {
-		return "";
+		return "show";
 	}
 	
 	
@@ -91,7 +91,7 @@ public abstract class BaseController<T> implements Serializable {
 	 * @return
 	 */
 	public String _new(){
-		return "";
+		return "add";
 	}
 	
 	/**
@@ -99,7 +99,7 @@ public abstract class BaseController<T> implements Serializable {
 	 * @return
 	 */
 	public String edit(Long id){
-		return "";
+		return "edit";
 	}
 	
 	/**
@@ -107,8 +107,8 @@ public abstract class BaseController<T> implements Serializable {
 	 * @param entity
 	 * @return
 	 */
-	public  T create(T entity) {
-		return entity;
+	public  void create(T entity) {
+
 	}
 
 	

@@ -1,9 +1,7 @@
 package com.tomweb.message.jms;
 
 
-import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.util.Assert;
 
 import javax.jms.Destination;
 
@@ -25,12 +23,12 @@ public class JmsMessageService
         produceMessage(this.defaultDestination, message);
     }
 
-    public void createMessage(JmsMessage message, String destination)
+  /*  public void createMessage(JmsMessage message, String destination)
     {
         Assert.notNull(destination);
         Destination queueDestination = new ActiveMQQueue(destination);
         produceMessage(queueDestination, message);
-    }
+    }*/
 
     private void produceMessage(Destination destination, JmsMessage message) {
         this.jmsTemplate.convertAndSend(destination, message);
