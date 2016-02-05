@@ -46,6 +46,12 @@ dependencies {
             "org.springframework:spring-webmvc:$springVersion",
             "org.springframework:spring-jdbc:$springVersion",
             "org.springframework:spring-websocket:$springVersion",
+            "org.springframework:spring-jms:$springVersion",
+            "org.springframework.amqp:spring-rabbit:1.5.3.RELEASE",
+            'org.springframework.data:spring-data-redis:1.6.2.RELEASE',
+
+            "io.projectreactor.spring:reactor-spring-context:$reactorVersion",
+
             "org.mybatis:mybatis:3.3.0",
             "org.mybatis:mybatis-spring:1.2.3",
             "com.alibaba:druid:1.0.15",
@@ -59,15 +65,13 @@ dependencies {
             "com.fasterxml.jackson.core:jackson-core:2.6.1",
             "org.codehaus.groovy:groovy-all:2.4.5",
             "commons-logging:commons-logging:1.2",
-            "org.springframework:spring-jms:$springVersion",
             "javax.jms:jms:1.1",
             "javax.mail:mail:1.4.7",
             "log4j:log4j:1.2.17",
-            "org.springframework.amqp:spring-rabbit:1.5.3.RELEASE",
+
             // Reactor Core
             "io.projectreactor:reactor-core:$reactorVersion",
             "io.projectreactor:reactor-stream:$reactorVersion",
-            "io.projectreactor.spring:reactor-spring-context:$reactorVersion",
             'org.apache.shiro:shiro-core:1.2.4'
 
     )
