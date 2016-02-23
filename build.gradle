@@ -50,7 +50,7 @@ dependencies {
             "org.springframework.amqp:spring-rabbit:1.5.3.RELEASE",
             'org.springframework.data:spring-data-redis:1.6.2.RELEASE',
 
-            "io.projectreactor.spring:reactor-spring-context:$reactorVersion",
+
 
             "org.mybatis:mybatis:3.3.0",
             "org.mybatis:mybatis-spring:1.2.3",
@@ -70,9 +70,16 @@ dependencies {
             "log4j:log4j:1.2.17",
 
             // Reactor Core
+            "io.projectreactor.spring:reactor-spring-context:$reactorVersion",
             "io.projectreactor:reactor-core:$reactorVersion",
             "io.projectreactor:reactor-stream:$reactorVersion",
-            'org.apache.shiro:shiro-core:1.2.4'
+            'org.apache.shiro:shiro-core:1.2.4',
+
+            //quartz
+            'org.quartz-scheduler:quartz:2.2.2',
+            'org.quartz-scheduler:quartz-jobs:2.2.2'
+
+
 
     )
     providedCompile(
