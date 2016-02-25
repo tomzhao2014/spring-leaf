@@ -11,7 +11,7 @@ import javax.servlet.ServletException;
 /**
  * Created by tom on 15/12/22.
  */
-public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer{
 
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
@@ -25,7 +25,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     }
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[] { RootConfig.class };
+        return new Class<?>[] { RootConfig.class,SpringSecurityConfig.class};
     }
     @Override
     protected Class<?>[] getServletConfigClasses() {

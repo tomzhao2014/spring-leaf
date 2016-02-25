@@ -14,7 +14,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
@@ -28,7 +27,7 @@ import javax.sql.DataSource;
 @PropertySource("classpath:/application-develop.properties")
 
 @EnableTransactionManagement
-@EnableScheduling
+//@EnableScheduling
 //@ImportResource("classpath:system-config.xml")
 public class RootConfig {
 
