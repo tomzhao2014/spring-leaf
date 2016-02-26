@@ -29,6 +29,7 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 //@EnableScheduling
 //@ImportResource("classpath:system-config.xml")
+@Import(BatchConfiguration.class)
 public class RootConfig {
 
     private Log log = LogFactory.getLog(RootConfig.class);

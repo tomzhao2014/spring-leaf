@@ -51,6 +51,7 @@ dependencies {
             'org.springframework.data:spring-data-redis:1.6.2.RELEASE',
             'org.springframework.security:spring-security-web:4.0.3.RELEASE',
             'org.springframework.security:spring-security-config:4.0.3.RELEASE',
+             'org.springframework.batch:spring-batch-core:3.0.6.RELEASE',
 
 
             "org.mybatis:mybatis:3.3.0",
