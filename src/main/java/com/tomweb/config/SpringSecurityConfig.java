@@ -1,17 +1,21 @@
 package com.tomweb.config;
 
+import com.tomweb.security.LoginSuccessHandler;
+import com.tomweb.service.auth.SysUserDetailService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.event.LoggerListener;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 import org.springframework.security.web.access.expression.WebExpressionVoter;
-import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 
 /**
  * 系统安全配置
@@ -28,11 +32,18 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private Log log = LogFactory.getLog(SpringSecurityConfig.class);
 
-   /* @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
+    @Autowired
+    private SysUserDetailService sysUserDetailService;
 
-    }*/
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        //指定密码加密所使用的加密器为passwordEncoder()
+        // 需要将密码加密后写入数据库 //code13
+        auth.userDetailsService(sysUserDetailService).passwordEncoder(passwordEncoder());//code5
+        // 不删除凭据，以便记住用户
+        auth.eraseCredentials(false);
+
+    }
 
     public void configure(WebSecurity web){
         // 设置不拦截规则
@@ -49,22 +60,26 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().accessDeniedPage("/login")
                 .and()
                 .formLogin()    //指定登录页是”/login”
-                .loginPage("/login")
+                .loginPage("/")
                 .failureUrl("/login?error=1")
-                .loginProcessingUrl("/j_spring_security_check")
-                .usernameParameter("j_username")
-                .passwordParameter("j_password")
-                .permitAll()    //登录成功后可使用loginSuccessHandler()存储用户信息，可选。
-               // .successHandler(loginSuccessHandler())//code3
+                .loginProcessingUrl("/login")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .permitAll()
+                //登录成功后可使用loginSuccessHandler()存储用户信息，可选。
+                .successHandler(loginSuccessHandler())//code3
                 .and()
-                .logout()  //退出登录后的默认网址是”/home”
+                .logout()
+                //退出登录后的默认网址是”/home”
                 .logoutSuccessUrl("/")
                 .permitAll()
                 .invalidateHttpSession(true)
-                .and()      //登录后记住用户，下次自动登录// 数据库中必须存在名为persistent_logins的表         //建表语句见code15
+                .and()
+                //登录后记住用户，下次自动登录// 数据库中必须存在名为persistent_logins的表         //建表语句见code15
                 .rememberMe()
-                .tokenValiditySeconds(1209600)    //指定记住登录信息所使用的数据源
-                .tokenRepository(tokenRepository());//code4;
+                .tokenValiditySeconds(1209600);
+                //指定记住登录信息所使用的数据源
+              //  .tokenRepository(tokenRepository());//code4;
                 //.failureUrl("/login?error=1");
 
         // 开启默认登录页面
@@ -86,17 +101,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.rememberMe().key("webmvc#FD637E6D9C0F1A5A67082AF56CE32485");
     }
 
-    // Code4----------------------------------------------
     @Bean
-    public JdbcTokenRepositoryImpl tokenRepository(){
-        JdbcTokenRepositoryImpl j=new JdbcTokenRepositoryImpl();
-      /*  j.setDataSource(dataSource1);*/
-        return j;
-    }    // Code3----------------------------------------------
-   /* @Bean
-    public LoginSuccessHandler loginSuccessHandler(){
-        return new LoginSuccessHandler();//code6
-    }*/
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(4);
+    }
+
 
     @Bean
     public LoggerListener loggerListener() {
@@ -115,7 +124,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-
+    @Bean
+    public LoginSuccessHandler loginSuccessHandler(){
+        return new LoginSuccessHandler();
+    }
 
 
     /*

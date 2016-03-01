@@ -2,6 +2,7 @@ package com.tomweb.repository;
 
 import com.tomweb.core.repository.EntityRepository;
 import com.tomweb.entity.Role;
+import com.tomweb.entity.User;
 import org.springframework.stereotype.Repository;
 
 /**

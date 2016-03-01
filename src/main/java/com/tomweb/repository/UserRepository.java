@@ -13,4 +13,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends EntityRepository<User> {
     User get(Long userId);
+    User findByUsername(String username);
 }
