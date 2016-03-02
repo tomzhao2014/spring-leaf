@@ -47,58 +47,26 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     public void configure(WebSecurity web){
         // 设置不拦截规则
-        web.ignoring().antMatchers("/css/**","/js/**","/images/**","/img/**");
+        web.ignoring().antMatchers("/css/**","/js/**","/images/**","/img/**","/fonts/**");
     }
 
     protected void configure(HttpSecurity http) throws Exception {
-        // 设置拦截规则
-        // 自定义accessDecisionManager访问控制器,并开启表达式语言
-        http.authorizeRequests()
-                .expressionHandler(webSecurityExpressionHandler())
-                .antMatchers("/").permitAll()
+        http
+                .authorizeRequests()
+                .anyRequest().authenticated()
                 .and()
-                .exceptionHandling().accessDeniedPage("/login")
-                .and()
-                .formLogin()    //指定登录页是”/login”
+                .formLogin()
                 .loginPage("/")
-                .failureUrl("/login?error=1")
-                .loginProcessingUrl("/login")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .permitAll()
-                //登录成功后可使用loginSuccessHandler()存储用户信息，可选。
-                .successHandler(loginSuccessHandler())//code3
-                .and()
+                .permitAll();
+
+        http
                 .logout()
-                //退出登录后的默认网址是”/home”
+                .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
-                .permitAll()
+              /*  .logoutSuccessHandler(logoutSuccessHandler)
                 .invalidateHttpSession(true)
-                .and()
-                //登录后记住用户，下次自动登录// 数据库中必须存在名为persistent_logins的表         //建表语句见code15
-                .rememberMe()
-                .tokenValiditySeconds(1209600);
-                //指定记住登录信息所使用的数据源
-              //  .tokenRepository(tokenRepository());//code4;
-                //.failureUrl("/login?error=1");
-
-        // 开启默认登录页面
-        // http.formLogin();
-
-        // 自定义登录页面
-        http.csrf().disable().formLogin().loginPage("/login")
-               .permitAll();
-
-        // 自定义注销
-        http.logout().logoutUrl("/logout").logoutSuccessUrl("/login")
-                .invalidateHttpSession(true);
-
-        // session管理
-        http.sessionManagement().sessionFixation().changeSessionId()
-                .maximumSessions(1).expiredUrl("/");
-
-        // RemeberMe
-        http.rememberMe().key("webmvc#FD637E6D9C0F1A5A67082AF56CE32485");
+                .addLogoutHandler(logoutHandler)
+                .deleteCookies(cookieNamesToClear)*/;
     }
 
     @Bean

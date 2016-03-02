@@ -1,4 +1,5 @@
-﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="cn">
 <head>
@@ -63,8 +64,17 @@
                   </h4>
 
                   <div class="space-6"></div>
-
-                  <form action="/login" method="post">
+                  <c:url value="/login" var="loginUrl"/>
+                  <form action="${loginUrl}" method="post" id="loginForm">
+                    <c:if test="${param.error != null}">
+                        Invalid username and password.
+                      </p>
+                    </c:if>
+                    <c:if test="${param.logout != null}">
+                      <p>
+                        You have been logged out.
+                      </p>
+                    </c:if>
                     <fieldset>
                       <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
@@ -88,6 +98,9 @@
                           <span class="lbl">记住我</span>
                         </label>
 
+                        <input type="hidden"
+                               name="${_csrf.parameterName}"
+                               value="${_csrf.token}"/>
                         <button type="button" class="width-35 pull-right btn btn-sm btn-primary">
                           <i class="ace-icon fa fa-key"></i>
                           <span class="bigger-110" id="login">登录</span>
@@ -328,6 +341,10 @@
       $('#id-company-text').attr('class', 'light-blue');
 
       e.preventDefault();
+    });
+
+    $("#login").on("click",function(){
+      $("#loginForm").submit()
     });
 
   });
