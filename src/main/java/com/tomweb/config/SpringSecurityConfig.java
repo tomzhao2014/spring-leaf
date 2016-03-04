@@ -1,7 +1,6 @@
 package com.tomweb.config;
 
-import com.tomweb.security.LoginSuccessHandler;
-import com.tomweb.service.auth.SysUserDetailService;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,17 +31,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private Log log = LogFactory.getLog(SpringSecurityConfig.class);
 
-    @Autowired
-    private SysUserDetailService sysUserDetailService;
-
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        //指定密码加密所使用的加密器为passwordEncoder()
-        // 需要将密码加密后写入数据库 //code13
-        auth.userDetailsService(sysUserDetailService).passwordEncoder(passwordEncoder());//code5
-        // 不删除凭据，以便记住用户
-        auth.eraseCredentials(false);
-
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication().withUser("tomzhao").password("123456").roles("USER");
     }
 
     public void configure(WebSecurity web){
@@ -92,10 +82,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-    @Bean
-    public LoginSuccessHandler loginSuccessHandler(){
-        return new LoginSuccessHandler();
-    }
 
 
     /*
