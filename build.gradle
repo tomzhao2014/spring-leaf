@@ -22,7 +22,7 @@ apply plugin: "org.akhikhl.gretty"
 apply plugin: "org.hidetake.ssh"
 group = "com.tom.webframework"
 version = "1.0"
-sourceCompatibility = 1.8
+sourceCompatibility = 1.7
 
 // 全局属性设置
 ext {
