@@ -21,13 +21,13 @@
 		<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString" />
 	</settings>
 	<typeAliases>
-		<typeAlias alias="Entity" type="com.tomweb.core.orm.mybatis.EntityTypeHandler" />
+		<typeAlias alias="Entity" type="com.qiktone.core.orm.mybatis.EntityTypeHandler" />
 	</typeAliases>
 	<typeHandlers>
-		<typeHandler handler="com.tomweb.core.orm.mybatis.EntityTypeHandler" />
+		<typeHandler handler="com.qiktone.core.orm.mybatis.EntityTypeHandler" />
 	</typeHandlers>
 	<plugins>
-		<plugin interceptor="com.tomweb.core.orm.mybatis.PaginationStatementHandlerInterceptor" />
-		<plugin interceptor="com.tomweb.core.orm.mybatis.PaginationResultSetHandlerInterceptor" />
+		<plugin interceptor="com.qiktone.core.orm.mybatis.PaginationStatementHandlerInterceptor" />
+		<plugin interceptor="com.qiktone.core.orm.mybatis.PaginationResultSetHandlerInterceptor" />
 	</plugins>
 </configuration>    
