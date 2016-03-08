@@ -18,13 +18,12 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         servletContext.setInitParameter("log4jConfigLocation","classpath:log4j.properties");
-
         super.onStartup(servletContext);
     }
 
     @Override
     protected String[] getServletMappings() {
-        return new String[] { "/" };
+        return new String[] { "/*" };
     }
     @Override
     protected Class<?>[] getRootConfigClasses() {
@@ -37,9 +36,11 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
     @Override
     protected Filter[] getServletFilters() {
+
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
         characterEncodingFilter.setEncoding("UTF-8");
         characterEncodingFilter.setForceEncoding(true);
+
         HiddenHttpMethodFilter hiddenHttpMethodFilter = new HiddenHttpMethodFilter();
         return new Filter[]{characterEncodingFilter,hiddenHttpMethodFilter};
     }

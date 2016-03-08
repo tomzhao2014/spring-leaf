@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/company")
 public class CompanyController extends BaseController{
-    @RequestMapping(value = "/",method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String index(){
         return "company/index";
     }

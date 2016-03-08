@@ -23,9 +23,9 @@ import javax.sql.DataSource;
  * Created by tom on 15/12/22.
  */
 @Configuration
-@ComponentScan(basePackages={"com.qiktone"}, excludeFilters={@ComponentScan.Filter(type= FilterType.ANNOTATION, value=EnableWebMvc.class),
+@ComponentScan(basePackages={"com.qiktone.*"}, excludeFilters={@ComponentScan.Filter(type= FilterType.ANNOTATION, value=EnableWebMvc.class),
         @ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.qiktone.web.*Controller")})
-@PropertySource("classpath:/application-develop.properties")
+//@PropertySource("classpath:/application-develop.properties")
 
 @EnableTransactionManagement
 //@ImportResource("classpath:system-config.xml")
@@ -34,24 +34,22 @@ public class RootConfig {
 
     private Log log = LogFactory.getLog(RootConfig.class);
 
-    @Value("${jdbc.url}")
+   /* @Value("${jdbc.url}")
     private String url;
 
     @Value("${jdbc.username}")
     private String username;
 
     @Value("${jdbc.password}")
-    private String password;
+    private String password;*/
 
     @Bean(initMethod = "init",destroyMethod = "close")
     public DataSource dataSource(){
         log.debug("数据源配置");
         DruidDataSource dataSource = new DruidDataSource();
-        System.out.println("======1111========="+url);
-        System.out.println("===============" + username);
-        dataSource.setUrl("jdbc:mysql://localhost:3306/bxwd?userUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/fun97?userUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull");
         dataSource.setUsername("root");
-        dataSource.setPassword("");
+        dataSource.setPassword("123456");
         dataSource.setInitialSize(1);
         dataSource.setMinIdle(1);
         dataSource.setMaxActive(19);
