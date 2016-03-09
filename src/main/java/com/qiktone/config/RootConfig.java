@@ -6,8 +6,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -47,7 +49,7 @@ public class RootConfig {
     public DataSource dataSource(){
         log.debug("数据源配置");
         DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setUrl("jdbc:mysql://localhost:3306/fun97?userUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/bxwd?userUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull");
         dataSource.setUsername("root");
         dataSource.setPassword("123456");
         dataSource.setInitialSize(1);

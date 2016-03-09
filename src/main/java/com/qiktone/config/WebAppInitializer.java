@@ -2,7 +2,6 @@ package com.qiktone.config;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
-import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
@@ -18,6 +17,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         servletContext.setInitParameter("log4jConfigLocation","classpath:log4j.properties");
+        ServletRegistration servletRegistration =servletContext.getServletRegistration("default");
         super.onStartup(servletContext);
     }
 
@@ -34,12 +34,19 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         return new Class<?>[] { WebConfig.class };
     }
 
+
+    @Override
+    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+        super.customizeRegistration(registration);
+    }
+
     @Override
     protected Filter[] getServletFilters() {
 
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
         characterEncodingFilter.setEncoding("UTF-8");
         characterEncodingFilter.setForceEncoding(true);
+
 
         HiddenHttpMethodFilter hiddenHttpMethodFilter = new HiddenHttpMethodFilter();
         return new Filter[]{characterEncodingFilter,hiddenHttpMethodFilter};
