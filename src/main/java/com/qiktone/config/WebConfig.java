@@ -25,13 +25,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         resolver.setExposeContextBeansAsAttributes(true);
         return resolver;
     }
+
+
     @Override
-    public void configureDefaultServletHandling(
-            DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+        configurer.enable("default");
+        super.configureDefaultServletHandling(configurer);
     }
-
-
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
@@ -55,12 +55,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-
-        registry.addResourceHandler("/css/**").addResourceLocations("/css/");
-        registry.addResourceHandler("/js/**").addResourceLocations("/js/");
-        registry.addResourceHandler("/images/**").addResourceLocations("/images/");
-        registry.addResourceHandler("/img/**").addResourceLocations("/img/");
-       // registry.addResourceHandler("/fonts/**").addResourceLocations("/fonts/");
+        //registry.addResourceHandler("/css/**").addResourceLocations("/css/");
+        //registry.addResourceHandler("/js/**").addResourceLocations("/js/");
+        //registry.addResourceHandler("/images/**").addResourceLocations("/images/");
+        //registry.addResourceHandler("/img/**").addResourceLocations("/img/");
+        //registry.addResourceHandler("/fonts/**").addResourceLocations("/fonts/");
     }
 
 
