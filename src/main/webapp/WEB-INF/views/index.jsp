@@ -1,6 +1,5 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta charset="utf-8" />
@@ -281,7 +280,43 @@
       <li class="">
         <a href="index.html">
           <i class="menu-icon fa fa-tachometer"></i>
-          <span class="menu-text"> Dashboard </span>
+          <span class="menu-text"> 公司管理 </span>
+        </a>
+
+        <b class="arrow"></b>
+      </li>
+
+      <li class="">
+        <a href="index.html">
+          <i class="menu-icon fa fa-tachometer"></i>
+          <span class="menu-text"> 账号管理 </span>
+        </a>
+
+        <b class="arrow"></b>
+      </li>
+
+      <li class="">
+        <a href="index.html">
+          <i class="menu-icon fa fa-tachometer"></i>
+          <span class="menu-text"> 部门管理 </span>
+        </a>
+
+        <b class="arrow"></b>
+      </li>
+
+      <li class="">
+        <a href="index.html">
+          <i class="menu-icon fa fa-tachometer"></i>
+          <span class="menu-text"> 员工管理 </span>
+        </a>
+
+        <b class="arrow"></b>
+      </li>
+
+      <li class="">
+        <a href="index.html">
+          <i class="menu-icon fa fa-tachometer"></i>
+          <span class="menu-text"> 角色管理 </span>
         </a>
 
         <b class="arrow"></b>
@@ -355,7 +390,7 @@
 
 <!--[if IE]>
 <script type="text/javascript">
-  window.jQuery || document.write("<script src='/js/jquery1x.min..js'>"+"<"+"/script>");
+  window.jQuery || document.write("<script src='/js/jquery1x.min.js'>"+"<"+"/script>");
 </script>
 <![endif]-->
 <script type="text/javascript">
@@ -368,17 +403,5 @@
 <!-- ace scripts -->
 <script src="/js/ace-elements.min.js"></script>
 <script src="/js/ace.min.js"></script>
-<script src="/js/ace.ajax-content.min.js"></script>
-<script src="/js/ace/ace.touch-drag.js"></script>
-<script src="/js/ace/ace.sidebar.js"></script>
-<script src="/js/ace/ace.sidebar-scroll-1.js"></script>
-<script src="/js/ace/ace.submenu-hover.js"></script>
-<script src="/js/ace/ace.widget-box.js"></script>
-<script src="/js/ace/ace.settings.js"></script>
-<script src="/js/ace/ace.settings-rtl.js"></script>
-<script src="/js/ace/ace.settings-skin.js"></script>
-<script src="/js/ace/ace.widget-on-reload.js"></script>
-<script src="/js/ace/ace.searchbox-autocomplete.js"></script>
-
 </body>
 </html>
