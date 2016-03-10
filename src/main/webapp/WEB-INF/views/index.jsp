@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta charset="utf-8" />
-  <title>Empty Page - Ace Admin</title>
+  <title>快景物流云-管理平台</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
@@ -65,141 +65,20 @@
       <a href="#" class="navbar-brand">
         <small>
           <i class="fa fa-leaf"></i>
-          Ace Admin
+          快景物流云管理平台
         </small>
       </a>
 
-      <!-- /section:basics/navbar.layout.brand -->
 
-      <!-- #section:basics/navbar.toggle -->
-
-      <!-- /section:basics/navbar.toggle -->
     </div>
 
     <!-- #section:basics/navbar.dropdown -->
     <div class="navbar-buttons navbar-header pull-right" role="navigation">
       <ul class="nav ace-nav">
-        <li class="grey">
-          <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-            <i class="ace-icon fa fa-tasks"></i>
-            <span class="badge badge-grey">4</span>
-          </a>
-
-          <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-            <li class="dropdown-header">
-              <i class="ace-icon fa fa-check"></i>
-              4 Tasks to complete
-            </li>
-
-            <li class="dropdown-content">
-              <ul class="dropdown-menu dropdown-navbar">
-                <li>
-                  <a href="#">
-                    <div class="clearfix">
-                      <span class="pull-left">Task Name</span>
-                      <span class="pull-right">65%</span>
-                    </div>
-
-                    <div class="progress progress-mini">
-                      <div style="width:65%" class="progress-bar"></div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <li class="dropdown-footer">
-              <a href="#">
-                See tasks with details
-                <i class="ace-icon fa fa-arrow-right"></i>
-              </a>
-            </li>
-          </ul>
-        </li>
-
-        <li class="purple">
-          <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-            <i class="ace-icon fa fa-bell icon-animated-bell"></i>
-            <span class="badge badge-important">8</span>
-          </a>
-
-          <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-            <li class="dropdown-header">
-              <i class="ace-icon fa fa-exclamation-triangle"></i>
-              8 Notifications
-            </li>
-
-            <li class="dropdown-content">
-              <ul class="dropdown-menu dropdown-navbar navbar-pink">
-                <li>
-                  <a href="#">
-                    <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
-														New Comments
-													</span>
-                      <span class="pull-right badge badge-info">+12</span>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <li class="dropdown-footer">
-              <a href="#">
-                See all notifications
-                <i class="ace-icon fa fa-arrow-right"></i>
-              </a>
-            </li>
-          </ul>
-        </li>
-
-        <li class="green">
-          <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-            <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
-            <span class="badge badge-success">5</span>
-          </a>
-
-          <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-            <li class="dropdown-header">
-              <i class="ace-icon fa fa-envelope-o"></i>
-              5 Messages
-            </li>
-
-            <li class="dropdown-content">
-              <ul class="dropdown-menu dropdown-navbar">
-                <li>
-                  <a href="#" class="clearfix">
-                    <img src="/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
-												<span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Alex:</span>
-														Message Summary
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>Message Time</span>
-													</span>
-												</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <li class="dropdown-footer">
-              <a href="inbox.html">
-                See all messages
-                <i class="ace-icon fa fa-arrow-right"></i>
-              </a>
-            </li>
-          </ul>
-        </li>
 
         <!-- #section:basics/navbar.user_menu -->
         <li class="light-blue">
           <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-            <img class="nav-user-photo" src="/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>Welcome,</small>
 									Jason
@@ -212,16 +91,16 @@
             <li>
               <a href="#">
                 <i class="ace-icon fa fa-cog"></i>
-                Settings
+                设置
               </a>
             </li>
 
             <li class="divider"></li>
 
             <li>
-              <a href="#">
+              <a href="/logout">
                 <i class="ace-icon fa fa-power-off"></i>
-                Logout
+                退出
               </a>
             </li>
           </ul>
@@ -243,43 +122,11 @@
       try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
     </script>
 
-    <div class="sidebar-shortcuts" id="sidebar-shortcuts">
-      <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-        <button class="btn btn-success">
-          <i class="ace-icon fa fa-signal"></i>
-        </button>
-
-        <button class="btn btn-info">
-          <i class="ace-icon fa fa-pencil"></i>
-        </button>
-
-        <!-- #section:basics/sidebar.layout.shortcuts -->
-        <button class="btn btn-warning">
-          <i class="ace-icon fa fa-users"></i>
-        </button>
-
-        <button class="btn btn-danger">
-          <i class="ace-icon fa fa-cogs"></i>
-        </button>
-
-        <!-- /section:basics/sidebar.layout.shortcuts -->
-      </div>
-
-      <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
-        <span class="btn btn-success"></span>
-
-        <span class="btn btn-info"></span>
-
-        <span class="btn btn-warning"></span>
-
-        <span class="btn btn-danger"></span>
-      </div>
-    </div><!-- /.sidebar-shortcuts -->
 
     <ul class="nav nav-list">
       <li class="">
-        <a href="index.html">
-          <i class="menu-icon fa fa-tachometer"></i>
+        <a href="/member">
+          <i class="menu-icon fa fa-home"></i>
           <span class="menu-text"> 公司管理 </span>
         </a>
 
@@ -287,8 +134,8 @@
       </li>
 
       <li class="">
-        <a href="index.html">
-          <i class="menu-icon fa fa-tachometer"></i>
+        <a href="/account">
+          <i class="menu-icon fa fa-key"></i>
           <span class="menu-text"> 账号管理 </span>
         </a>
 
@@ -296,8 +143,8 @@
       </li>
 
       <li class="">
-        <a href="index.html">
-          <i class="menu-icon fa fa-tachometer"></i>
+        <a href="/department">
+          <i class="menu-icon fa fa-navicon"></i>
           <span class="menu-text"> 部门管理 </span>
         </a>
 
@@ -305,8 +152,8 @@
       </li>
 
       <li class="">
-        <a href="index.html">
-          <i class="menu-icon fa fa-tachometer"></i>
+        <a href="/employee">
+          <i class="menu-icon fa fa-user"></i>
           <span class="menu-text"> 员工管理 </span>
         </a>
 
@@ -314,44 +161,14 @@
       </li>
 
       <li class="">
-        <a href="index.html">
-          <i class="menu-icon fa fa-tachometer"></i>
+        <a href="/role">
+          <i class="menu-icon fa fa-users"></i>
           <span class="menu-text"> 角色管理 </span>
         </a>
 
         <b class="arrow"></b>
       </li>
 
-      <li class="">
-        <a href="#" class="dropdown-toggle">
-          <i class="menu-icon fa fa-desktop"></i>
-          <span class="menu-text"> UI Elements </span>
-
-          <b class="arrow fa fa-angle-down"></b>
-        </a>
-
-        <b class="arrow"></b>
-
-        <ul class="submenu">
-          <li class="">
-            <a href="elements.html">
-              <i class="menu-icon fa fa-caret-right"></i>
-              Elements
-            </a>
-
-            <b class="arrow"></b>
-          </li>
-
-          <li class="">
-            <a href="buttons.html">
-              <i class="menu-icon fa fa-caret-right"></i>
-              Buttons &amp; Icons
-            </a>
-
-            <b class="arrow"></b>
-          </li>
-        </ul>
-      </li>
     </ul><!-- /.nav-list -->
 
     <!-- #section:basics/sidebar.layout.minimize -->
