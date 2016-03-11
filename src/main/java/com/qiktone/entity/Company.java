@@ -4,10 +4,16 @@ package com.qiktone.entity;
  * Created by tom on 16/3/5.
  */
 public class Company extends BaseDomainEntity {
-    private String password;
+    private String shortName;
+    private String code;
 
-    @Override
-    public Long getId() {
-        return super.getId();
-    }
+    private String fax;
+    private String level;
+    private String disabledReason;
+
+    private String address;
+
+    private String type;
+    private long companyAccount;
+
 }
