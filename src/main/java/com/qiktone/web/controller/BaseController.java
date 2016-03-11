@@ -6,6 +6,7 @@ package com.qiktone.web.controller;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import java.io.Serializable;
  * @author tom
  * 
  */
+
 public abstract class BaseController<T> implements Serializable {
 
 	/**
