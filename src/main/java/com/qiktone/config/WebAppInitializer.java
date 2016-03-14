@@ -17,13 +17,12 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         servletContext.setInitParameter("log4jConfigLocation","classpath:log4j.properties");
-        ServletRegistration servletRegistration =servletContext.getServletRegistration("default");
         super.onStartup(servletContext);
     }
 
     @Override
     protected String[] getServletMappings() {
-        return new String[] { "/*" };
+        return new String[] { "/" };
     }
     @Override
     protected Class<?>[] getRootConfigClasses() {
@@ -35,10 +34,6 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     }
 
 
-    @Override
-    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
-        super.customizeRegistration(registration);
-    }
 
     @Override
     protected Filter[] getServletFilters() {

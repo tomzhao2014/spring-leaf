@@ -48,13 +48,16 @@ dependencies {
             "org.mybatis:mybatis-spring:1.2.3",
             "com.alibaba:druid:1.0.15",
             'com.fasterxml.jackson.core:jackson-annotations:2.7.2',
+            'com.fasterxml.jackson.core:jackson-databind:2.7.2',
             "mysql:mysql-connector-java:5.1.36",
             "commons-fileupload:commons-fileupload:1.2.2",
             "commons-lang:commons-lang:2.6",
             "commons-logging:commons-logging:1.2",
             'org.mybatis.generator:mybatis-generator-core:1.3.2',
             "log4j:log4j:1.2.17",
+
     )
+
     providedCompile(
             "javax.servlet:javax.servlet-api:3.1.0",
             "javax.servlet.jsp:jsp-api:2.2",
@@ -69,7 +72,7 @@ dependencies {
 // 使用gretty插件运行web工程
 gretty {
     httpPort = 8081
-    debugPort = httpPort + 1
+
     servicePort = httpPort + 2
     statusPort = httpPort + 3
     httpsPort = httpPort + 4
@@ -77,9 +80,15 @@ gretty {
     contextPath = "/"
     jvmArgs = ["-Xmx1024M", "-XX:PermSize=128M", "-XX:MaxPermSize=256M"]
     servletContainer = "jetty9"
-    scanInterval = 0
-    //inplaceMode = "hard"
-    debugSuspend = true
+    scanInterval = 1
+    managedClassReload = true
+
+    afterEvaluate {
+        appRunDebug {
+            debugPort = 8087
+            debugSuspend = true
+        }
+    }
 }
 
 /*

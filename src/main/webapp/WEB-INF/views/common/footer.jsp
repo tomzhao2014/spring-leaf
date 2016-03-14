@@ -1,4 +1,4 @@
-
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <!-- basic scripts -->
 
 <!--[if !IE]> -->
@@ -23,3 +23,5 @@ window.jQuery || document.write("<script src='/js/jquery1x.min.js'>"+"<"+"/scrip
 <!-- ace scripts -->
 <script src="/js/ace-elements.min.js"></script>
 <script src="/js/ace.min.js"></script>
+<script src="/js/dataTables/jquery.dataTables.bootstrap.min.js"></script>
+<script src="/js/dataTables/jquery.dataTables.min.js"></script>

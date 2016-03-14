@@ -2,6 +2,8 @@ package com.qiktone.core.repository;
 
 
 import com.qiktone.core.entity.BaseEntity;
+import org.apache.ibatis.annotations.Param;
+
 public interface EntityRepository<Entity extends BaseEntity>{
 	
 

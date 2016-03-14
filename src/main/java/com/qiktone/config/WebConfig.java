@@ -4,10 +4,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.http.MediaType;
 import org.springframework.validation.Validator;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 /**
  * Created by tom on 15/12/22.
@@ -16,21 +19,12 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 @ComponentScan("com.qiktone.web.*")
 public class WebConfig extends WebMvcConfigurerAdapter {
-    @Bean
-    public ViewResolver viewResolver() {
-        InternalResourceViewResolver resolver =
-                new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/views/");
-        resolver.setSuffix(".jsp");
-        resolver.setExposeContextBeansAsAttributes(true);
-        return resolver;
-    }
 
 
     @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable("default");
-        super.configureDefaultServletHandling(configurer);
+    public void configureViewResolvers(ViewResolverRegistry registry) {
+        registry.enableContentNegotiation(new MappingJackson2JsonView());
+        registry.jsp("/WEB-INF/views/",".jsp");
     }
 
     @Override
@@ -49,19 +43,26 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        super.addViewControllers(registry);
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/css/**").addResourceLocations("/css/");
+        registry.addResourceHandler("/js/**").addResourceLocations("/js/");
+        registry.addResourceHandler("/images/**").addResourceLocations("/images/");
+        registry.addResourceHandler("/img/**").addResourceLocations("/img/");
+        registry.addResourceHandler("/fonts/**").addResourceLocations("/fonts/");
+
     }
+
 
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        //registry.addResourceHandler("/css/**").addResourceLocations("/css/");
-        //registry.addResourceHandler("/js/**").addResourceLocations("/js/");
-        //registry.addResourceHandler("/images/**").addResourceLocations("/images/");
-        //registry.addResourceHandler("/img/**").addResourceLocations("/img/");
-        //registry.addResourceHandler("/fonts/**").addResourceLocations("/fonts/");
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+        configurer.mediaType("json", MediaType.APPLICATION_JSON);
+        super.configureContentNegotiation(configurer);
     }
 
 
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+        configurer.enable();
+    }
 
 }

@@ -7,9 +7,23 @@
 
 
 
-    <select id="findAll"  resultType="Constant">
-        select * from constant
+    <select id="findAll" resultMap="constantResult">
+        select c1.id AS conId,c1.type,c1.descr,c1.code,c1.seq,c2.id as comId,c2.name
+        from constant c1
+        LEFT join company c2 on c1.company_id = c2.id
     </select>
 
+
+    <resultMap id="constantResult" type="Constant">
+        <id property="id" column="conId"></id>
+        <result property="type" column="type"></result>
+        <result property="descr" column="descr"></result>
+        <result property="code" column="code"></result>
+        <result property="seq" column="seq"></result>
+        <association property="company" column="company_id" javaType="com.qiktone.entity.Company"   select="com.qiktone.repository.CompanyRepository.getById">
+            <id property="id" column="comId"></id>
+            <result property="name" column="name"></result>
+        </association>
+    </resultMap>
 
 </mapper>

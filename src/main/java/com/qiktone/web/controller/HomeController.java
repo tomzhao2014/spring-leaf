@@ -21,7 +21,7 @@ public class HomeController extends BaseController{
     public String index() {
 
        // throw new RuntimeException("ceshi");
-    return "index";}
+    return "login";}
 
     @RequestMapping(path = "login",method = RequestMethod.POST)
        public String login(String username,String password){

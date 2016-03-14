@@ -75,7 +75,7 @@ public abstract class BaseController<T> implements Serializable {
 	 * @param id
 	 * @return
 	 */
-	public String index(){
+	public String index(Model model){
 		return "list";
 	}
 	

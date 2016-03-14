@@ -7,21 +7,14 @@ package com.qiktone.entity;
 public class Constant extends BaseDomainEntity {
 
 
-    private long companyId;
+    private Long id;
     private String descr;
     private String type;
     private String code;
     private int seq;
     private int uc;
+    private Company company;
 
-
-    public long getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(long companyId) {
-        this.companyId = companyId;
-    }
 
     public String getDescr() {
         return descr;
@@ -64,4 +57,21 @@ public class Constant extends BaseDomainEntity {
     }
 
 
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

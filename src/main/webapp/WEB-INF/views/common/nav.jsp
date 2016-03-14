@@ -5,6 +5,7 @@
   Time: 7:29
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <div id="navbar" class="navbar navbar-default">
   <script type="text/javascript">
     try{ace.settings.check('navbar' , 'fixed')}catch(e){}

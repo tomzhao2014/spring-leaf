@@ -2,6 +2,7 @@ package com.qiktone.repository;
 
 import com.qiktone.core.repository.EntityRepository;
 import com.qiktone.entity.Company;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -12,5 +13,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CompanyRepository extends EntityRepository<Company> {
-
+    Company getById(@Param(value = "id") Long id);
 }
