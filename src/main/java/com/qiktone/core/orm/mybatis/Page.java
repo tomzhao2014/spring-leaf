@@ -26,10 +26,16 @@ public class Page<T> extends RowBounds implements Serializable {
 	protected boolean autoCount = true;
 	private int offset;
 	private int limit;
+
+	protected  String preCss;
+
+	protected String nextCss;
 	  
 	// -- 返回结果 --//
 	protected List<T> result = new ArrayList<T>();
 	protected long totalCount = 0;
+
+
 
 	// -- 构造函数 --//
 	public Page() {
@@ -46,6 +52,8 @@ public class Page<T> extends RowBounds implements Serializable {
 		this.limit = pageSize;
 		this.pageNo = pageNo;
 		this.pageSize = pageSize;
+		this.nextCss="";
+		this.preCss="";
 	}
 	
 	
@@ -224,5 +232,25 @@ public class Page<T> extends RowBounds implements Serializable {
 	public int getLimit() {
 		return limit;
 	}
+
+
+	public String getNextCss() {
+		if(!isHasNext()){
+			nextCss="disabled";
+		}
+		return nextCss;
+	}
+
+
+	public String getPreCss() {
+		if(!isHasPre()){
+			preCss="disabled";
+		}
+		return preCss;
+	}
+
+
+
+
 
 }

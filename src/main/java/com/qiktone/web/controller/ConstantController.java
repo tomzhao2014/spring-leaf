@@ -24,11 +24,8 @@ public class ConstantController extends BaseController{
     @RequestMapping(path = "",method = RequestMethod.GET)
     public String index(Model model) {
         Page<Constant> page = new Page<Constant>();
-        List<Constant> constantList = constantRepository.findAll(page);
-        System.out.println(constantList);
-        System.out.println(page);
+        constantRepository.findAll(page);
         model.addAttribute("page",page);
-        model.addAttribute("list",constantList);
         return "constant/index";
     }
 }
