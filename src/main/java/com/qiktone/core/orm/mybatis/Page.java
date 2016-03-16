@@ -21,8 +21,8 @@ public class Page<T> extends RowBounds implements Serializable {
 	public static final int DEFAULT_PAGE_SIZE = 15;
 
 	// -- 分页参数 --//
-	protected int pageNo;
-	protected int pageSize;
+	protected Integer pageNo;
+	protected Integer pageSize;
 	protected boolean autoCount = true;
 	private int offset;
 	private int limit;
@@ -42,15 +42,15 @@ public class Page<T> extends RowBounds implements Serializable {
 		this(DEFAULT_PAGE_NO, DEFAULT_PAGE_SIZE);
 	}
 
-	public Page(int pageNo) {
+	public Page(Integer pageNo) {
 		this(pageNo, DEFAULT_PAGE_SIZE);
 	}
 
-	public Page(int pageNo, int pageSize) {
+	public Page(Integer pageNo, Integer pageSize) {
 		//super((pageNo - 1) * pageSize, pageSize);   RowBounds父类没有序列化 不能远程调用
-		this.offset = (pageNo - 1) * pageSize;
+		this.pageNo = pageNo==null?DEFAULT_PAGE_NO:pageNo;
+		this.offset = (this.pageNo - 1) * pageSize;
 		this.limit = pageSize;
-		this.pageNo = pageNo;
 		this.pageSize = pageSize;
 		this.nextCss="";
 		this.preCss="";

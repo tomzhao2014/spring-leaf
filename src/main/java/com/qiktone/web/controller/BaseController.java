@@ -75,8 +75,8 @@ public abstract class BaseController<T> implements Serializable {
 	 * @param id
 	 * @return
 	 */
-	public String index(Model model){
-		return "list";
+	public String index(Integer pageNo,Model model){
+		return "index";
 	}
 	
 	/**
@@ -92,7 +92,7 @@ public abstract class BaseController<T> implements Serializable {
 	 * 新增页面
 	 * @return
 	 */
-	public String _new(){
+	public String add(){
 		return "add";
 	}
 	

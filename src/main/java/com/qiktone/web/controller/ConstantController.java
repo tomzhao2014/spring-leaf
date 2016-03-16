@@ -22,10 +22,19 @@ public class ConstantController extends BaseController{
     private ConstantRepository constantRepository;
     @Override
     @RequestMapping(path = "",method = RequestMethod.GET)
-    public String index(Model model) {
-        Page<Constant> page = new Page<Constant>();
+    public String index(Integer pageNo,Model model) {
+        Page<Constant> page = new Page<Constant>(pageNo);
         constantRepository.findAll(page);
         model.addAttribute("page",page);
         return "constant/index";
+    }
+    @RequestMapping(path = "/add")
+    public String add(){
+        return "constant/add";
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public  void create(Constant constant) {
+
     }
 }

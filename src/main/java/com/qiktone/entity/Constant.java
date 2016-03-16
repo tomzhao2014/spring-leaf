@@ -13,6 +13,7 @@ public class Constant extends BaseDomainEntity {
     private String code;
     private int seq;
     private int uc;
+    private Long companyId;
     private Company company;
 
 

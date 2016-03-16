@@ -37,6 +37,9 @@
 									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off">
 									<i class="ace-icon fa fa-search nav-search-icon"></i>
 								</span>
+          <button class="btn btn-xs btn-info">
+            <a href="/constant/add"><i class="ace-icon fa fa-plus bigger-100"></i></a>
+          </button>
         </form>
       </div><!-- /.nav-search -->
 
@@ -97,9 +100,7 @@
 
                 <td>
                   <div class="hidden-sm hidden-xs btn-group">
-                    <button class="btn btn-xs btn-success">
-                      <i class="ace-icon fa fa-check bigger-120"></i>
-                    </button>
+
 
                     <button class="btn btn-xs btn-info">
                       <i class="ace-icon fa fa-pencil bigger-120"></i>
@@ -109,9 +110,6 @@
                       <i class="ace-icon fa fa-trash-o bigger-120"></i>
                     </button>
 
-                    <button class="btn btn-xs btn-warning">
-                      <i class="ace-icon fa fa-flag bigger-120"></i>
-                    </button>
                   </div>
 
                   <div class="hidden-md hidden-lg">
@@ -153,22 +151,7 @@
               </tbody>
             </table>
 
-            <div class="row">
-              <div class="col-xs-6">
-                <div class="dataTables_info" id="dynamic-table_info" role="status" aria-live="polite">第${page.pageNo}页 共${page.totalPages}页 总共${page.totalCount}条</div>
-              </div>
-              <div class="col-xs-6">
-                <div class="dataTables_paginate paging_simple_numbers" id="dynamic-table_paginate">
-                  <ul class="pagination">
-                    <li class="paginate_button previous" aria-controls="dynamic-table" tabindex="0" id="dynamic-table_first" curpage="1"><a href="#">首页</a></li>
-                    <li class="paginate_button previous <%=page.preCss%>" aria-controls="dynamic-table" tabindex="0" id="dynamic-table_previous" curpage="<%=page.prePage%>"><a href="#">上一页</a></li>
-                    <li class="paginate_button next <%=page.nextCss%>" aria-controls="dynamic-table" tabindex="0" id="dynamic-table_next" curpage="<%=page.nextPage%>"><a href="#">下一页</a></li>
-                    <li class="paginate_button next" aria-controls="dynamic-table" tabindex="0" id="dynamic-table_last" curpage="<%=page.totalPages%>"><a href="#">尾页</a></li>
-                  </ul>
-                </div>
-              </div>
-
-            </div>
+           <c:import url="../common/pager.jsp"></c:import>
           </div>
           <!-- PAGE CONTENT ENDS -->
         </div><!-- /.col -->
