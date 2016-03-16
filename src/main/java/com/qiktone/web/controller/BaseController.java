@@ -3,6 +3,8 @@
  */
 package com.qiktone.web.controller;
 
+import com.qiktone.core.entity.BaseEntity;
+import com.qiktone.entity.BaseDomainEntity;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.ui.Model;
@@ -20,7 +22,7 @@ import java.io.Serializable;
  * 
  */
 
-public abstract class BaseController<T> implements Serializable {
+public abstract class BaseController<T extends BaseEntity> implements Serializable {
 
 	/**
 	 * 
@@ -121,8 +123,8 @@ public abstract class BaseController<T> implements Serializable {
 	 * @param entity
 	 * @return
 	 */
-	public T update(T entity) {
-		return null;
+	public void update(T entity) {
+
 	}
 
 	/**

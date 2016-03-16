@@ -9,8 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.List;
-
 /**
  * Created by tom on 2016/3/10.
  */
@@ -23,7 +21,7 @@ public class ConstantController extends BaseController{
     @Override
     @RequestMapping(path = "",method = RequestMethod.GET)
     public String index(Integer pageNo,Model model) {
-        Page<Constant> page = new Page<Constant>(pageNo);
+        Page page = new Page<Constant>(pageNo);
         constantRepository.findAll(page);
         model.addAttribute("page",page);
         return "constant/index";
@@ -33,8 +31,19 @@ public class ConstantController extends BaseController{
         return "constant/add";
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public  void create(Constant constant) {
 
+    @RequestMapping(method = RequestMethod.POST)
+    public void create(Constant constant) {
+
+    }
+
+    @RequestMapping(path = "/edit")
+    public String edit(Long id){
+        return "edit";
+    }
+
+
+    public void update(Constant constant) {
+        constantRepository.update(constant);
     }
 }
