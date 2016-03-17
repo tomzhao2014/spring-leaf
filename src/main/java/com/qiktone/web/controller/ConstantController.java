@@ -7,6 +7,7 @@ import com.qiktone.service.ConstantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -19,6 +20,13 @@ public class ConstantController extends BaseController{
 
     @Autowired
     private ConstantService constantService;
+
+    /**
+     *
+     * @param pageNo
+     * @param model
+     * @return
+     */
     @Override
     @RequestMapping(path = "",method = RequestMethod.GET)
     public String index(Integer pageNo,Model model) {
@@ -27,25 +35,58 @@ public class ConstantController extends BaseController{
         model.addAttribute("page",page);
         return "constant/index";
     }
+
+    /**
+     *
+     * @return
+     */
     @RequestMapping(path = "/add")
     public String add(){
         return "constant/add";
     }
 
 
+    /**
+     *
+     * @param constant
+     * @return
+     */
     @RequestMapping(method = RequestMethod.POST)
     public String create(Constant constant) {
         constantService.create(constant);
         return "redirect:/constant";
     }
 
-    @RequestMapping(path = "/edit")
-    public String edit(Long id){
-        return "edit";
+    /**
+     * a
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(path = "/edit/{id}")
+    public String edit(Long id,Model model){
+        Constant constant = constantService.getById(id);
+        model.addAttribute("constant",constant);
+        return "/constant/edit";
     }
 
 
+    /**
+     *
+     * @param constant
+     */
     public void update(Constant constant) {
         constantService.update(constant);
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(path = "/del/{id}")
+    public String delete(@PathVariable Long id) {
+        constantService.delete(id);
+        return "redirect:/constant";
     }
 }

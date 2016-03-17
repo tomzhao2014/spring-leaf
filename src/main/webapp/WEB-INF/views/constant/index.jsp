@@ -174,10 +174,21 @@
   });
 
   $(function () {
-    console.log(1111)
     $("#addConstant").click(function(){
       window.location.href ="/constant/add";
     });
+
+    $(".j_edit").click(function(){
+      var conId = $(this).attr("ConTd");
+      window.location.href ="/constant/edit/"+conId;
+    });
+
+    $(".j_del").click(function(){
+      var conId = $(this).attr("ConTd");
+      window.location.href ="/constant/del/"+conId;
+    });
+
+
   })
 </script>
 </body>

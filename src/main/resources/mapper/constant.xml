@@ -10,6 +10,10 @@
     values(#{descr},#{type},#{code},#{seq},#{companyId})
     </insert>
 
+    <select id="getById" resultType="Constant" parameterType="java.lang.Long">
+        select * from constant where id = #{id}
+    </select>
+
     <select id="list" resultMap="constantResult">
         select c1.id AS conId,c1.type,c1.descr,c1.code,c1.seq,c2.id as comId,c2.name
         from constant c1
@@ -17,6 +21,9 @@
         order by c1.id DESC 
     </select>
 
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from constant where id=#{id}
+    </delete>
 
     <resultMap id="constantResult" type="Constant">
         <id property="id" column="conId"></id>

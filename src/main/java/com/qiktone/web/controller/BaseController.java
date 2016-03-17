@@ -5,6 +5,7 @@ package com.qiktone.web.controller;
 
 import com.qiktone.core.entity.BaseEntity;
 import com.qiktone.entity.BaseDomainEntity;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.ui.Model;
@@ -102,7 +103,7 @@ public abstract class BaseController<T extends BaseEntity> implements Serializab
 	 * 编辑页面
 	 * @return
 	 */
-	public String edit(Long id){
+	public String edit(Long id,Model model){
 		return "edit";
 	}
 	
