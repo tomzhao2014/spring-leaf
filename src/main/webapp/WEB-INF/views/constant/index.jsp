@@ -32,15 +32,7 @@
 
       <!-- #section:basics/content.searchbox -->
       <div class="nav-search" id="nav-search">
-        <form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off">
-									<i class="ace-icon fa fa-search nav-search-icon"></i>
-								</span>
-          <button class="btn btn-xs btn-info">
-            <a href="/constant/add"><i class="ace-icon fa fa-plus bigger-100"></i></a>
-          </button>
-        </form>
+          <button class="btn btn-minier btn-primary" id="addConstant">添加新系统常量</button>
       </div><!-- /.nav-search -->
 
       <!-- /section:basics/content.searchbox -->
@@ -102,11 +94,11 @@
                   <div class="hidden-sm hidden-xs btn-group">
 
 
-                    <button class="btn btn-xs btn-info">
+                    <button class="btn btn-xs btn-info j_edit" conId="${constant.id}">
                       <i class="ace-icon fa fa-pencil bigger-120"></i>
                     </button>
 
-                    <button class="btn btn-xs btn-danger">
+                    <button class="btn btn-xs btn-danger j_del"  conId="${constant.id}">
                       <i class="ace-icon fa fa-trash-o bigger-120"></i>
                     </button>
 
@@ -181,6 +173,12 @@
     else $row.removeClass(active_class);
   });
 
+  $(function () {
+    console.log(1111)
+    $("#addConstant").click(function(){
+      window.location.href ="/constant/add";
+    });
+  })
 </script>
 </body>
 </html>

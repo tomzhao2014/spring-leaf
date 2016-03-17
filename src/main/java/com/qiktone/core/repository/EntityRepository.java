@@ -2,7 +2,10 @@ package com.qiktone.core.repository;
 
 
 import com.qiktone.core.entity.BaseEntity;
+import com.qiktone.core.orm.mybatis.Page;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface EntityRepository<Entity extends BaseEntity>{
 	
@@ -14,5 +17,7 @@ public interface EntityRepository<Entity extends BaseEntity>{
 	void update(Entity entity);
 
 	void delete(Long id);
+
+	List<Entity> list(Page<Entity> page);
 	
 }

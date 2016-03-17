@@ -3,6 +3,7 @@ package com.qiktone.web.controller;
 import com.qiktone.core.orm.mybatis.Page;
 import com.qiktone.entity.Constant;
 import com.qiktone.repository.ConstantRepository;
+import com.qiktone.service.ConstantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +18,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ConstantController extends BaseController{
 
     @Autowired
-    private ConstantRepository constantRepository;
+    private ConstantService constantService;
     @Override
     @RequestMapping(path = "",method = RequestMethod.GET)
     public String index(Integer pageNo,Model model) {
         Page page = new Page<Constant>(pageNo);
-        constantRepository.findAll(page);
+        constantService.list(page);
         model.addAttribute("page",page);
         return "constant/index";
     }
@@ -33,8 +34,9 @@ public class ConstantController extends BaseController{
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public void create(Constant constant) {
-
+    public String create(Constant constant) {
+        constantService.create(constant);
+        return "redirect:/constant";
     }
 
     @RequestMapping(path = "/edit")
@@ -44,6 +46,6 @@ public class ConstantController extends BaseController{
 
 
     public void update(Constant constant) {
-        constantRepository.update(constant);
+        constantService.update(constant);
     }
 }

@@ -1,5 +1,6 @@
 package com.qiktone.core.service;
 
+import com.qiktone.core.orm.mybatis.Page;
 import com.qiktone.core.repository.EntityRepository;
 import com.qiktone.core.entity.BaseEntity;
 import com.qiktone.core.entity.IdGenerator;
@@ -59,4 +60,8 @@ public abstract class BaseEntityService<Entity extends BaseEntity> implements Ba
 		getEntityRepository().delete(id);
 	}
 
+	@Override
+	public void list(Page<Entity> page) {
+		getEntityRepository().list(page);
+	}
 }

@@ -2,6 +2,7 @@ package com.qiktone.core.service;
 
 import java.io.Serializable;
 
+import com.qiktone.core.orm.mybatis.Page;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.qiktone.core.entity.BaseEntity;
@@ -13,7 +14,7 @@ import com.qiktone.core.entity.BaseEntity;
  * 
  * @param <Entity> 实体类型
  * @param <PK> 主键类型
- * @author Ricky
+ * @author tom
  */
 @Transactional
 public interface BaseService<Entity extends BaseEntity, PK extends Serializable> {
@@ -45,4 +46,5 @@ public interface BaseService<Entity extends BaseEntity, PK extends Serializable>
 	public void delete(PK id);
 	
 
+	public void list(Page<Entity> page);
 }
