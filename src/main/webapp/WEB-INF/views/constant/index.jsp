@@ -179,12 +179,12 @@
     });
 
     $(".j_edit").click(function(){
-      var conId = $(this).attr("ConTd");
+      var conId = $(this).attr("conTd");
       window.location.href ="/constant/edit/"+conId;
     });
 
     $(".j_del").click(function(){
-      var conId = $(this).attr("ConTd");
+      var conId = $(this).attr("conTd");
       window.location.href ="/constant/del/"+conId;
     });
 

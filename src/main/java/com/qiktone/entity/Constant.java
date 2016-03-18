@@ -6,13 +6,17 @@ package com.qiktone.entity;
  */
 public class Constant extends BaseDomainEntity {
 
-
-    private Long id;
+    //描述
     private String descr;
+    //类别
     private String type;
+    //代码
     private String code;
+    //排序
     private int seq;
+    //
     private int uc;
+    //所属公司
     private Long companyId;
     private Company company;
 
@@ -66,13 +70,4 @@ public class Constant extends BaseDomainEntity {
         this.company = company;
     }
 
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

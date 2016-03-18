@@ -11,7 +11,7 @@ import java.util.Date;
  * Date: 2016/3/17 0017
  * Time: 14:31
  */
-public class DateUtils {
+public class DateUtils extends org.apache.commons.lang.time.DateUtils{
     private static Calendar cal = Calendar.getInstance();
 
     /**
@@ -83,4 +83,6 @@ public class DateUtils {
             cal.clear();
         }
     }
+
+
 }
