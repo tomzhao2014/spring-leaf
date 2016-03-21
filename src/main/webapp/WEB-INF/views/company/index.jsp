@@ -25,14 +25,14 @@
         </li>
 
         <li>
-          <a href="/constant">系统常量管理</a>
+          <a href="/constant">公司管理</a>
         </li>
-        <li class="active">系统常量列表</li>
+        <li class="active">公司列表</li>
       </ul><!-- /.breadcrumb -->
 
       <!-- #section:basics/content.searchbox -->
       <div class="nav-search" id="nav-search">
-          <button class="btn btn-minier btn-primary" id="addConstant">添加新系统常量</button>
+          <button class="btn btn-minier btn-primary" id="addConstant">添加新公司</button>
       </div><!-- /.nav-search -->
 
       <!-- /section:basics/content.searchbox -->
@@ -41,7 +41,7 @@
       <div class="row">
           <!-- PAGE CONTENT BEGINS -->
           <div class="col-xs-12">
-            <table id="simple-table" class="table table-striped table-bordered table-hover">
+            <table id="simple-table" class="table table-striped table-bordered table-hover" width="100%">
               <thead>
               <tr>
                 <th class="center">
@@ -50,21 +50,27 @@
                     <span class="lbl"></span>
                   </label>
                 </th>
-                <th>描述</th>
-                <th>类型</th>
+                <th>序号</th>
+                <th>全称简称</th>
                 <th class="hidden-480">代码</th>
-
-                <th>
-                  排序
-                </th>
-                <th class="hidden-480">所属公司</th>
-
+                <th>类型</th>
+                <th class="hidden-480">状态</th>
+                <th>合同编号</th>
+                <th>起始日期</th>
+                <th>终止日期</th>
+                <th >最多账号数</th>
+                <th>联系人</th>
+                <th>公司电话</th>
+                <th>传真</th>
+                <th>电子邮箱</th>
+                <th>公司地址</th>
+                <th>服务费</th>
                 <th></th>
               </tr>
               </thead>
 
               <tbody>
-              <c:forEach items="${page.result}" var="constant">
+              <c:forEach items="${page.result}" var="company">
               <tr>
                 <td class="center">
                   <label class="pos-rel">
@@ -74,29 +80,32 @@
                 </td>
 
                 <td>
-                  <a href="#">${constant.descr}</a>
+                  <a href="#">${company.id}</a>
                 </td>
-                <td>${constant.type}</td>
-                <td class="hidden-480">${constant.code}</td>
-                <td>${constant.seq}</td>
-
+                <td>${company.shortName}</td>
+                <td class="hidden-480">${company.code}</td>
+                <td>${company.type}</td>
                 <td class="hidden-480">
-                  <span class="label label-sm label-warning">
-                 <c:if test="${constant.company!=null}">
-                   constant.company.name
-                 </c:if>
-                  </span>
-                </td>
-
+                  ${company.state}
+                <td>${company.contractNumber}</td>
+                <td>${company.startDate}</td>
+                <td>${company.availableDate}</td>
+                <td>${company.maxAccounts}</td>
+                <td>${company.contract}</td>
+                <td>${company.phone}</td>
+                <td>${company.fax}</td>
+                <td>${company.email}</td>
+                <td>${company.address}</td>
+                <td>${company.serviceFee}</td>
                 <td>
                   <div class="hidden-sm hidden-xs btn-group">
 
 
-                    <button class="btn btn-xs btn-info j_edit" conId="${constant.id}">
+                    <button class="btn btn-xs btn-info j_edit" conId="${company.id}">
                       <i class="ace-icon fa fa-pencil bigger-120"></i>
                     </button>
 
-                    <button class="btn btn-xs btn-danger j_del"  conId="${constant.id}">
+                    <button class="btn btn-xs btn-danger j_del"  conId="${company.id}">
                       <i class="ace-icon fa fa-trash-o bigger-120"></i>
                     </button>
 
@@ -144,7 +153,6 @@
            <c:import url="../common/pager.jsp"></c:import>
           </div>
           <!-- PAGE CONTENT ENDS -->
-
       </div><!-- /.row -->
     </div><!-- /.page-content -->
   </div><!-- /.main-content -->
@@ -169,6 +177,14 @@
     var $row = $(this).closest('tr');
     if(this.checked) $row.addClass(active_class);
     else $row.removeClass(active_class);
+  });
+
+  var myTable = $('#simple-table').dataTable({
+    paging: false,
+    "ordering": false,
+    "searching": false,
+    "scrollX": true
+
   });
 
   $(function () {

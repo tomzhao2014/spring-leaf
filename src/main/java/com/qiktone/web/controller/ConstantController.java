@@ -64,7 +64,7 @@ public class ConstantController extends BaseController{
      * @return
      */
     @RequestMapping(path = "/edit/{id}")
-    public String edit(Long id,Model model){
+    public String edit(@PathVariable Long id,Model model){
         Constant constant = constantService.getById(id);
         model.addAttribute("constant",constant);
         return "/constant/edit";
@@ -75,8 +75,10 @@ public class ConstantController extends BaseController{
      *
      * @param constant
      */
-    public void update(Constant constant) {
+    @RequestMapping(method = RequestMethod.PUT)
+    public String update(Constant constant) {
         constantService.update(constant);
+        return "redirect:/constant";
     }
 
     /**

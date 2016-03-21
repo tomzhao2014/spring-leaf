@@ -6,6 +6,9 @@
 <mapper namespace="com.qiktone.repository.CompanyRepository">
 
 
+    <select id="list" resultType="Company" >
+        select * from company
+    </select>
 
     <select id="getById"  resultType="Company" parameterType="java.lang.Long">
         select * from constant where id = ${id}

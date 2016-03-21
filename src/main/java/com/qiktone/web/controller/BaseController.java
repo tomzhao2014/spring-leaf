@@ -70,12 +70,12 @@ public abstract class BaseController<T extends BaseEntity> implements Serializab
 		String uri = request.getRequestURI();
 		return uri.endsWith(".json");
 	}
-	
-	
-	
+
+
 	/**
-	 * 列表页面
-	 * @param id
+	 *
+	 * @param pageNo
+	 * @param model
 	 * @return
 	 */
 	public String index(Integer pageNo,Model model){
@@ -124,8 +124,8 @@ public abstract class BaseController<T extends BaseEntity> implements Serializab
 	 * @param entity
 	 * @return
 	 */
-	public void update(T entity) {
-
+	public String update(T entity) {
+		return "";
 	}
 
 	/**

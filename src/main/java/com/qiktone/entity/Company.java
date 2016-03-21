@@ -19,7 +19,7 @@ public class Company extends BaseDomainEntity {
     //停用原因
     private String disabledReason;
     //合同编号
-    private String contract_number;
+    private String contractNumber;
     //最多账号数
     private Long maxAccounts;
     //开始日期
@@ -90,13 +90,7 @@ public class Company extends BaseDomainEntity {
         this.disabledReason = disabledReason;
     }
 
-    public String getContract_number() {
-        return contract_number;
-    }
 
-    public void setContract_number(String contract_number) {
-        this.contract_number = contract_number;
-    }
 
     public Long getMaxAccounts() {
         return maxAccounts;
@@ -210,5 +204,13 @@ public class Company extends BaseDomainEntity {
 
     public void setCollectDate(Date collectDate) {
         this.collectDate = collectDate;
+    }
+
+    public String getContractNumber() {
+        return contractNumber;
+    }
+
+    public void setContractNumber(String contractNumber) {
+        this.contractNumber = contractNumber;
     }
 }

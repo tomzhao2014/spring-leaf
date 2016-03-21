@@ -21,6 +21,16 @@
         order by c1.id DESC 
     </select>
 
+    <update id="update" parameterType="Constant">
+        update constant
+        set descr = #{descr},
+        type = #{type},
+        code = #{code},
+        seq = #{seq},
+        company_id = #{companyId}
+        where id = #{id}
+    </update>
+
     <delete id="delete" parameterType="java.lang.Long">
         delete from constant where id=#{id}
     </delete>

@@ -3,6 +3,8 @@ package com.qiktone.service;
 import com.qiktone.core.repository.EntityRepository;
 import com.qiktone.core.service.BaseEntityService;
 import com.qiktone.entity.Company;
+import com.qiktone.repository.CompanyRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,8 +15,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CompanyServiceImpl extends BaseEntityService<Company> implements CompanyService {
+
+    @Autowired
+    private CompanyRepository companyRepository;
+
     @Override
     public EntityRepository<Company> getEntityRepository() {
-        return null;
+        return companyRepository;
     }
 }
