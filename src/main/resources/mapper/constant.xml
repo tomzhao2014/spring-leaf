@@ -27,6 +27,12 @@
         where type = #{type}
     </select>
 
+    <select id="getByCode" resultType="Constant">
+          select *
+        from constant
+        where code = #{code}
+    </select>
+
     <update id="update" parameterType="Constant">
         update constant
         set descr = #{descr},

@@ -11,7 +11,9 @@ public class Account extends BaseDomainEntity {
     private String type;
     private String password;
     private String state;
-    private Long roled;
+    private Constant astate;
+    private Long roleId;
+    private Role role;
     private String appType;
 
     public String getUsername() {
@@ -46,12 +48,12 @@ public class Account extends BaseDomainEntity {
         this.state = state;
     }
 
-    public Long getRoled() {
-        return roled;
+    public Long getRoleId() {
+        return roleId;
     }
 
-    public void setRoled(Long roled) {
-        this.roled = roled;
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
     public String getAppType() {
@@ -61,4 +63,22 @@ public class Account extends BaseDomainEntity {
     public void setAppType(String appType) {
         this.appType = appType;
     }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Constant getAstate() {
+        return astate;
+    }
+
+    public void setAstate(Constant astate) {
+        this.astate = astate;
+    }
 }
+
+

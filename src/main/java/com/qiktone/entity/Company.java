@@ -217,4 +217,36 @@ public class Company extends BaseDomainEntity {
     public void setContractNumber(String contractNumber) {
         this.contractNumber = contractNumber;
     }
+
+    public Constant getServiceType() {
+        return serviceType;
+    }
+
+    public void setServiceType(Constant serviceType) {
+        this.serviceType = serviceType;
+    }
+
+    public Constant getCstate() {
+        return cstate;
+    }
+
+    public void setCstate(Constant cstate) {
+        this.cstate = cstate;
+    }
+
+    public Domain getDomain() {
+        return domain;
+    }
+
+    public void setDomain(Domain domain) {
+        this.domain = domain;
+    }
+
+    public Host getHost() {
+        return host;
+    }
+
+    public void setHost(Host host) {
+        this.host = host;
+    }
 }

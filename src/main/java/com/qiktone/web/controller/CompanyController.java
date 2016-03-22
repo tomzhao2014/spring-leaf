@@ -41,7 +41,9 @@ public class CompanyController extends BaseController{
         List<Constant> companyTypes = constantRepository.findByType("company_type");
         List<Constant> companyStateTypes = constantRepository.findByType("company_state_type");
         List<Constant> appTypes = constantRepository.findByType("app_type");
-
+        model.addAttribute("companyTypes",companyTypes);
+        model.addAttribute("companyStateTypes",companyStateTypes);
+        model.addAttribute("appTypes",appTypes);
 
     }
 
@@ -97,7 +99,7 @@ public class CompanyController extends BaseController{
 
     /**
      *
-     * @param constant
+     * @param company
      */
     public void update(Company company) {
         companyService.update(company);

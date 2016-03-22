@@ -1,10 +1,29 @@
-
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
-  <div class="form-group">
-    <label class="col-sm-3 control-label no-padding-right">描述</label>
 
-    <div class="col-sm-9">
-      <input type="text" name="descr" placeholder="" class="col-xs-10 col-sm-5" value="${constant!=null?constant.descr:""}">
+<div class="form-group">
+  <label class="col-sm-2 control-label" for="form-field-1">名称</label>
+  <div class="col-sm-4">
+    <input type="text" name="name" value="${catalog?.name}" id="form-field-1" placeholder="名称"
+           class="form-control validate[required,minSize[2]${catalog ? '' : ',ajax[ajaxCatalog]'}]"/>
+  </div>
+  <label class="col-sm-2 control-label" for="form-field-2">别名</label>
+  <div class="col-sm-4">
+    <input type="text" name="aliasName" value="${catalog?.aliasName}" id="form-field-2" placeholder="别名"
+           class="form-control validate[required]"/>
+  </div>
+</div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label no-padding-right">描述</label>
+
+    <div class="col-sm-4">
+      <input type="text" name="descr" placeholder="" class="form-control " value="${constant!=null?constant.descr:""}">
+    </div>
+
+    <label class="col-sm-2 control-label no-padding-right">类型</label>
+
+    <div class="col-sm-4">
+      <input type="text" name="type" placeholder="" class="form-control" value="${constant!=null?constant.type:""}">
     </div>
   </div>
 

@@ -11,19 +11,19 @@
 
     <select id="list" resultType="Company" >
         select * from company
+        left join constant on
     </select>
 
-    <select id="getById"  resultType="Company" parameterType="java.lang.Long">
+    <select id="getById"  resultMap="companyRS" parameterType="java.lang.Long">
         select * from constant where id = ${id}
     </select>
 
 
     <resultMap id="companyRS" type="Company">
-        <association property=""></association>
-        <association property=""></association>
-        <association property=""></association>
-        <association property=""></association>
-        <association property=""></association>
+        <association property="cstate" column="state" select="com.qiktone.repository.ConstantRepository.getByCode"></association>
+        <association property="serviceType" column="type" select="com.qiktone.repository.ConstantRepository.getByCode"></association>
+        <association property="domain" column="domain_id" select="com.qiktone.repository.DomainRepository.getById"></association>
+        <association property="host" column="host_id" select="com.qiktone.repository.HostRepository.getById"></association>
     </resultMap>
 
 </mapper>
