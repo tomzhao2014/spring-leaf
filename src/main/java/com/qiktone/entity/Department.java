@@ -7,4 +7,19 @@ package com.qiktone.entity;
  * Time: 13:30
  */
 public class Department extends BaseDomainEntity{
+    private String title;
+    private String name;
+    private String code;
+    private String type;
+    private Long parentId;
+    private String contact;
+    private String phone;
+    private String mobile;
+    private String fax;
+    private String bank;
+    private String backAccount;
+    private String accountTitle;
+    private String address;
+    private boolean isTemp;
+    private Long companyId;
 }

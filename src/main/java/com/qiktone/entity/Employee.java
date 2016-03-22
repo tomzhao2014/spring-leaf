@@ -7,4 +7,5 @@ package com.qiktone.entity;
  * Time: 13:30
  */
 public class Employee extends BaseDomainEntity {
+
 }

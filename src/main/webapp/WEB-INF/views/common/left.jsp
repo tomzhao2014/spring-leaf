@@ -21,6 +21,14 @@
 
       <b class="arrow"></b>
     </li>
+    <li class="">
+      <a href="/company">
+        <i class="menu-icon fa fa-home"></i>
+        <span class="menu-text"> 公司管理 </span>
+      </a>
+
+      <b class="arrow"></b>
+    </li>
 
     <li class="">
       <a href="/account">

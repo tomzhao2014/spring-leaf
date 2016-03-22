@@ -21,6 +21,12 @@
         order by c1.id DESC 
     </select>
 
+    <select id="findByType" resultType="Constant" parameterType="java.lang.String">
+        select *
+        from constant
+        where type = #{type}
+    </select>
+
     <update id="update" parameterType="Constant">
         update constant
         set descr = #{descr},

@@ -14,8 +14,10 @@ public class Company extends BaseDomainEntity {
     private String code;
     //服务类型
     private String type;
+    private Constant serviceType;
     //公司状态
     private String state;
+    private Constant cstate;
     //停用原因
     private String disabledReason;
     //合同编号
@@ -38,8 +40,10 @@ public class Company extends BaseDomainEntity {
     private String address;
     //所属域
     private Long domainId;
+    private Domain domain;
     //所属服务器
     private Long hostId;
+    private Host host;
     //服务费
     private BigDecimal serviceFee;
     //销售人员

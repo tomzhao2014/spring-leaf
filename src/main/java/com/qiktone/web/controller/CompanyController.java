@@ -2,13 +2,19 @@ package com.qiktone.web.controller;
 
 import com.qiktone.core.orm.mybatis.Page;
 import com.qiktone.entity.Company;
+import com.qiktone.entity.Constant;
+import com.qiktone.repository.ConstantRepository;
 import com.qiktone.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by tom on 16/3/5.
@@ -18,6 +24,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class CompanyController extends BaseController{
     @Autowired
     private CompanyService companyService;
+
+    @Autowired
+    private ConstantRepository constantRepository;
+
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+    }
+
+    @ModelAttribute
+    public void init(Model model){
+        List<Constant> companyTypes = constantRepository.findByType("company_type");
+        List<Constant> companyStateTypes = constantRepository.findByType("company_state_type");
+        List<Constant> appTypes = constantRepository.findByType("app_type");
+
+
+    }
 
     /**
      *
