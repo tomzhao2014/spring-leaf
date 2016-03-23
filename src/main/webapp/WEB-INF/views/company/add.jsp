@@ -25,20 +25,20 @@
         </li>
 
         <li>
-          <a href="/constant">系统常量管理</a>
+          <a href="/company">公司管理</a>
         </li>
-        <li class="active">添加系统常量</li>
+        <li class="active">添加公司</li>
       </ul><!-- /.breadcrumb -->
 
       <!-- /section:basics/content.searchbox -->
     </div>
     <div class="page-content">
       <div class="page-header">
-        <h1>添加系统常量信息</h1>
+        <h1>公司信息完善</h1>
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <form class="form-horizontal" role="form" action="/constant" method="post">
+          <form class="form-horizontal" role="form" action="/company" method="post">
             <c:import url="form.jsp"></c:import>
             </form>
         </div>

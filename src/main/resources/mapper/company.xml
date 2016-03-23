@@ -11,7 +11,6 @@
 
     <select id="list" resultType="Company" >
         select * from company
-        left join constant on
     </select>
 
     <select id="getById"  resultMap="companyRS" parameterType="java.lang.Long">

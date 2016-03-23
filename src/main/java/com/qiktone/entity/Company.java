@@ -1,5 +1,7 @@
 package com.qiktone.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -25,8 +27,10 @@ public class Company extends BaseDomainEntity {
     //最多账号数
     private Long maxAccounts;
     //开始日期
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
     //结束日期
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date availableDate;
     //联系人
     private String  contract;

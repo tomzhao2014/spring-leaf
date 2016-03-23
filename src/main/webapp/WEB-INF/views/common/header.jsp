@@ -38,5 +38,20 @@
   <!--[if lte IE 8]>
   <script src="/js/html5shiv.min.js"></script>
   <script src="/js/respond.min.js"></script>
+  <!--[if !IE]> -->
+  <script type="text/javascript">
+    window.jQuery || document.write("<script src='/js/jquery.min.js'>"+"<"+"/script>");
+  </script>
+
+  <!-- <![endif]-->
+
+  <!--[if IE]>
+  <script type="text/javascript">
+    window.jQuery || document.write("<script src='/js/jquery1x.min.js'>"+"<"+"/script>");
+  </script>
+  <![endif]-->
+  <script type="text/javascript">
+    if('ontouchstart' in document.documentElement) document.write("<script src='/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+  </script>
   <![endif]-->
 </head>

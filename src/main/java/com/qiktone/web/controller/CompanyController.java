@@ -44,6 +44,7 @@ public class CompanyController extends BaseController{
         model.addAttribute("companyTypes",companyTypes);
         model.addAttribute("companyStateTypes",companyStateTypes);
         model.addAttribute("appTypes",appTypes);
+        model.addAttribute("module","company");
 
     }
 

@@ -3,6 +3,8 @@ package com.qiktone.web.controller;
 
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,26 +18,33 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController extends BaseController{
 
 
+    @ModelAttribute
+    public void init(Model model){
+        model.addAttribute("module","home");
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String index() {
-
        // throw new RuntimeException("ceshi");
-    return "login";}
+        return "login";
+    }
 
     @RequestMapping(path = "login",method = RequestMethod.POST)
        public String login(String username,String password){
-        System.out.println("loging ");
 
 
         if (session!=null){
-            return "index";
+            return "redirect:/home";
         }else{
-            return "index";
+            return "redirect:/home";
        }
 
     }
 
+    @RequestMapping(path = "home",method = RequestMethod.GET)
+    public String home(){
+        return "home";
+    }
 
 
 }

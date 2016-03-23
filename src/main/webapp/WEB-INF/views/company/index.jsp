@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <c:import url="../common/header.jsp"></c:import>
 
@@ -25,14 +26,14 @@
         </li>
 
         <li>
-          <a href="/constant">公司管理</a>
+          <a href="/company">公司管理</a>
         </li>
         <li class="active">公司列表</li>
       </ul><!-- /.breadcrumb -->
 
       <!-- #section:basics/content.searchbox -->
       <div class="nav-search" id="nav-search">
-          <button class="btn btn-minier btn-primary" id="addConstant">添加新公司</button>
+          <button class="btn btn-minier btn-primary" id="addCompany">添加新公司</button>
       </div><!-- /.nav-search -->
 
       <!-- /section:basics/content.searchbox -->
@@ -180,26 +181,29 @@
   });
 
   var myTable = $('#simple-table').dataTable({
-    paging: false,
-    "ordering": false,
-    "searching": false,
-    "scrollX": true
+    "bPaginate": false,
+    "bInfo":false,
+    "bFilter":false,
+    "paging":false,
+    "ordering":false,
+    "searching":false,
+    "sScrollY": "60%", "sScrollX": "2000px"
 
   });
 
   $(function () {
-    $("#addConstant").click(function(){
-      window.location.href ="/constant/add";
+    $("#addCompany").click(function(){
+      window.location.href ="/company/add";
     });
 
     $(".j_edit").click(function(){
       var conId = $(this).attr("conId");
-      window.location.href ="/constant/edit/"+conId;
+      window.location.href ="/company/edit/"+conId;
     });
 
     $(".j_del").click(function(){
       var conId = $(this).attr("conId");
-      window.location.href ="/constant/del/"+conId;
+      window.location.href ="/company/del/"+conId;
     });
 
 
