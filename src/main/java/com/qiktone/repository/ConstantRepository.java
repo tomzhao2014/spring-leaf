@@ -12,5 +12,6 @@ import java.util.List;
 @Repository
 public interface ConstantRepository extends EntityRepository<Constant>{
     List<Constant> findByType(String type);
-    Constant getByCode(String code);
+    Constant getCompanyStateType(String code);
+    Constant getCompanyType(String code);
 }

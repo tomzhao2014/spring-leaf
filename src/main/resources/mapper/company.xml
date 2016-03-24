@@ -6,21 +6,29 @@
 <mapper namespace="com.qiktone.repository.CompanyRepository">
 
 
-    <sql id=""></sql>
+    <sql id="joinQuery">
+        select * from company c
+        inner join constant c1 on c1.code= c.type and c1.type='company_type'
+        left  join constant c2 on c2.code=c.state and c2.type='company_state_type'
+        left  join domain d on d.id=c.domain_id
+        left  join host h on h.id = c.host_id
+
+    </sql>
 
 
-    <select id="list" resultType="Company" >
-        select * from company
+    <select id="list" resultMap="companyRS">
+       <include refid="joinQuery"></include>
     </select>
 
     <select id="getById"  resultMap="companyRS" parameterType="java.lang.Long">
-        select * from constant where id = ${id}
+        <include refid="joinQuery"></include>
+         where id = ${id}
     </select>
 
 
     <resultMap id="companyRS" type="Company">
-        <association property="cstate" column="state" select="com.qiktone.repository.ConstantRepository.getByCode"></association>
-        <association property="serviceType" column="type" select="com.qiktone.repository.ConstantRepository.getByCode"></association>
+        <association property="cstate" column="state" select="com.qiktone.repository.ConstantRepository.getCompanyStateType"></association>
+        <association property="serviceType" column="type" select="com.qiktone.repository.ConstantRepository.getCompanyType"></association>
         <association property="domain" column="domain_id" select="com.qiktone.repository.DomainRepository.getById"></association>
         <association property="host" column="host_id" select="com.qiktone.repository.HostRepository.getById"></association>
     </resultMap>

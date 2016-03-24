@@ -27,10 +27,16 @@
         where type = #{type}
     </select>
 
-    <select id="getByCode" resultType="Constant">
-          select *
+    <select id="getCompanyType" resultType="Constant">
+    select *
+    from constant
+    where code = #{code} and type='company_type'
+</select>
+
+    <select id="getCompanyStateType" resultType="Constant">
+        select *
         from constant
-        where code = #{code}
+        where code = #{code} and type='company_state_type'
     </select>
 
     <update id="update" parameterType="Constant">

@@ -89,8 +89,8 @@
                 <td class="hidden-480">
                   ${company.state}
                 <td>${company.contractNumber}</td>
-                <td>${company.startDate}</td>
-                <td>${company.availableDate}</td>
+                <td><fmt:formatDate value="${company.startDate}" pattern="yyyy-MM-dd"/></td>
+                <td><fmt:formatDate value="${company.availableDate}" pattern="yyyy-MM-dd"/></td>
                 <td>${company.maxAccounts}</td>
                 <td>${company.contract}</td>
                 <td>${company.phone}</td>
