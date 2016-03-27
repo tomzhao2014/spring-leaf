@@ -78,7 +78,7 @@ public abstract class BaseController<T extends BaseEntity> implements Serializab
 	 * @param model
 	 * @return
 	 */
-	public String index(Integer pageNo,Model model){
+	public String index(Integer pageNo, Model model){
 		return "index";
 	}
 	

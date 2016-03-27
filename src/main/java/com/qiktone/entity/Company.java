@@ -33,7 +33,7 @@ public class Company extends BaseDomainEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date availableDate;
     //联系人
-    private String  contract;
+    private String  contact;
     //联系电话
     private String phone;
     //传真
@@ -126,12 +126,12 @@ public class Company extends BaseDomainEntity {
         this.availableDate = availableDate;
     }
 
-    public String getContract() {
-        return contract;
+    public String getContact() {
+        return contact;
     }
 
-    public void setContract(String contract) {
-        this.contract = contract;
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
     public String getPhone() {

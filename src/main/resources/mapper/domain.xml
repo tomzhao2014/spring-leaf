@@ -7,8 +7,8 @@
 
 
 
-    <select id="list" resultType="Domain" >
-        select * from company
+    <select id="findAll" resultType="Domain" >
+        select * from domain
     </select>
 
     <select id="getById"  resultType="Domain" parameterType="java.lang.Long">

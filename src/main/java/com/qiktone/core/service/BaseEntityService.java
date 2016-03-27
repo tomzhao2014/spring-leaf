@@ -4,6 +4,7 @@ import com.qiktone.core.orm.mybatis.Page;
 import com.qiktone.core.repository.EntityRepository;
 import com.qiktone.core.entity.BaseEntity;
 import com.qiktone.core.entity.IdGenerator;
+import com.qiktone.entity.vo.Query;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,9 @@ public abstract class BaseEntityService<Entity extends BaseEntity> implements Ba
 	}
 
 	@Override
-	public void list(Page<Entity> page) {
-		getEntityRepository().list(page);
+	public void list(Page<Entity> page,Entity query) {
+		getEntityRepository().list(page,query);
 	}
+
+
 }

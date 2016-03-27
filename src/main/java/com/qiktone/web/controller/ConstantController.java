@@ -34,11 +34,11 @@ public class ConstantController extends BaseController{
      * @param model
      * @return
      */
-    @Override
+
     @RequestMapping(path = "",method = RequestMethod.GET)
-    public String index(Integer pageNo,Model model) {
+    public String index(Integer pageNo,Constant constant,Model model) {
         Page page = new Page<Constant>(pageNo);
-        constantService.list(page);
+        constantService.list(page,constant);
         model.addAttribute("page",page);
         return "constant/index";
     }

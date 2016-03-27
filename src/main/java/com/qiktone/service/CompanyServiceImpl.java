@@ -23,4 +23,12 @@ public class CompanyServiceImpl extends BaseEntityService<Company> implements Co
     public EntityRepository<Company> getEntityRepository() {
         return companyRepository;
     }
+
+    @Override
+    public void create(Company company) {
+        //生成公司代码
+        String companyCode = companyRepository.getCompanyCode();
+        company.setCode(companyCode);
+        super.create(company);
+    }
 }

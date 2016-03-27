@@ -1,9 +1,13 @@
 package com.qiktone.web.controller;
 
 import com.qiktone.core.orm.mybatis.Page;
+import com.qiktone.entity.Account;
 import com.qiktone.entity.Company;
 import com.qiktone.entity.Constant;
+import com.qiktone.entity.vo.CompanyQuery;
 import com.qiktone.repository.ConstantRepository;
+import com.qiktone.repository.DomainRepository;
+import com.qiktone.repository.HostRepository;
 import com.qiktone.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -28,13 +32,13 @@ public class CompanyController extends BaseController{
     @Autowired
     private ConstantRepository constantRepository;
 
+    @Autowired
+    private DomainRepository domainRepository;
 
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        dateFormat.setLenient(false);
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
-    }
+    @Autowired
+    private HostRepository hostRepository;
+
+
 
     @ModelAttribute
     public void init(Model model){
@@ -45,7 +49,8 @@ public class CompanyController extends BaseController{
         model.addAttribute("companyStateTypes",companyStateTypes);
         model.addAttribute("appTypes",appTypes);
         model.addAttribute("module","company");
-
+        model.addAttribute("domains",domainRepository.findAll());
+        model.addAttribute("hosts",hostRepository.findAll());
     }
 
     /**
@@ -54,14 +59,21 @@ public class CompanyController extends BaseController{
      * @param model
      * @return
      */
-    @Override
-    @RequestMapping(path = "",method = RequestMethod.GET)
-    public String index(Integer pageNo,Model model) {
+
+    @RequestMapping(method = RequestMethod.GET)
+    public String index(CompanyQuery companyQuery,Integer pageNo,Model model) {
+        if(!companyQuery.isEmpty()){
+            session.setAttribute("query",companyQuery);
+        }
+        if(companyQuery.isEmpty()){
+            companyQuery=(CompanyQuery)session.getAttribute("query");
+        }
         Page page = new Page<Company>(pageNo);
-        companyService.list(page);
+        companyService.list(page,companyQuery);
         model.addAttribute("page",page);
         return "company/index";
     }
+
 
     /**
      *

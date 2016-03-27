@@ -33,7 +33,10 @@
 
       <!-- #section:basics/content.searchbox -->
       <div class="nav-search" id="nav-search">
-          <button class="btn btn-minier btn-primary" id="addCompany">添加新公司</button>
+          <button class="btn btn-minier btn-primary" id="addCompany">新建</button>
+        <button class="btn btn-minier btn-primary" id="department">部门管理</button>
+        <button class="btn btn-minier btn-primary" id="role">角色管理</button>
+        <button class="btn btn-minier btn-primary" id="export">导出Excel</button>
       </div><!-- /.nav-search -->
 
       <!-- /section:basics/content.searchbox -->
@@ -42,6 +45,9 @@
       <div class="row">
           <!-- PAGE CONTENT BEGINS -->
           <div class="col-xs-12">
+            <div class="widget-box">
+              <c:import url="search.jsp"></c:import>
+            </div>
             <table id="simple-table" class="table table-striped table-bordered table-hover" width="100%">
               <thead>
               <tr>
@@ -85,14 +91,14 @@
                 </td>
                 <td>${company.shortName}</td>
                 <td class="hidden-480">${company.code}</td>
-                <td>${company.type}</td>
+                <td>${company.serviceType.descr}</td>
                 <td class="hidden-480">
-                  ${company.state}
+                  ${company.cstate.descr}
                 <td>${company.contractNumber}</td>
                 <td><fmt:formatDate value="${company.startDate}" pattern="yyyy-MM-dd"/></td>
                 <td><fmt:formatDate value="${company.availableDate}" pattern="yyyy-MM-dd"/></td>
                 <td>${company.maxAccounts}</td>
-                <td>${company.contract}</td>
+                <td>${company.contact}</td>
                 <td>${company.phone}</td>
                 <td>${company.fax}</td>
                 <td>${company.email}</td>

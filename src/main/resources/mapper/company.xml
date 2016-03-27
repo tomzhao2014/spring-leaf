@@ -4,33 +4,113 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.qiktone.repository.CompanyRepository">
-
-
     <sql id="joinQuery">
-        select * from company c
+         select c.id,c.name,c.short_name,c.code,c.disabled_reason,c.contract_number,c.max_accounts,c.max_accounts,c.start_date,c.available_date,
+                c.contact,c.phone,c.fax,c.email,c.address,c.service_fee,c.salesman,c.is_collected,c.collect_date,
+                c1.id as typeId,c1.descr as typeDescr,c1.code as typeCode,
+                c2.id as stateId,c2.descr as stateDescr,c2.code as stateCode,
+                d.id as domainId,d.name as domainName,d.ip as domainIp,
+                h.id as hostId,h.name as hostName,h.ip as hostIp
+        from company c
         inner join constant c1 on c1.code= c.type and c1.type='company_type'
         left  join constant c2 on c2.code=c.state and c2.type='company_state_type'
         left  join domain d on d.id=c.domain_id
         left  join host h on h.id = c.host_id
 
     </sql>
-
-
-    <select id="list" resultMap="companyRS">
+    <select id="list" resultMap="companyRS" parameterType="CompanyQuery">
        <include refid="joinQuery"></include>
+        where 1=1
+        <if test="name != null and name !='' ">
+            and c.name like  CONCAT(CONCAT('%', #{name}),'%')
+        </if>
+        <if test="contact != null and contact !=''">
+            and c.contact like  CONCAT(CONCAT('%', #{contact}),'%')
+        </if>
+        <if test="type != null and type!=''">
+            and c.type = #{type}
+        </if>
+        <if test="startDate != null  and startDateEnd != null">
+            and c.start_date BETWEEN DATE_FORMAT( #{startDate}, '%Y-%m-%d') AND  DATE_FORMAT(#{startDateEnd}, '%Y-%m-%d')
+        </if>
+        <if test="startDate != null ">
+            and c.start_date &gt; DATE_FORMAT( #{startDate}, '%Y-%m-%d')
+        </if>
+        <if test="startDateEnd != null ">
+            and c.start_date &lt; DATE_FORMAT( #{startDateEnd}, '%Y-%m-%d')
+        </if>
+
+        <if test="availableDate != null  and availableDateEnd != null">
+            and c.available_date BETWEEN DATE_FORMAT( #{availableDate}, '%Y-%m-%d') AND  DATE_FORMAT(#{availableDateEnd}, '%Y-%m-%d')
+        </if>
+        <if test="availableDate != null ">
+            and c.start_date &gt; DATE_FORMAT( #{availableDate}, '%Y-%m-%d')
+        </if>
+        <if test="availableDateEnd != null ">
+            and c.start_date &lt; DATE_FORMAT( #{availableDateEnd}, '%Y-%m-%d')
+        </if>
+        order by c.id DESC
+
+
     </select>
 
     <select id="getById"  resultMap="companyRS" parameterType="java.lang.Long">
         <include refid="joinQuery"></include>
-         where id = ${id}
+         where id = #{id}
     </select>
-
-
+    
+    <select id="getCompanyCode"  >
+        select create_company_code('S') from dual
+    </select>
     <resultMap id="companyRS" type="Company">
-        <association property="cstate" column="state" select="com.qiktone.repository.ConstantRepository.getCompanyStateType"></association>
-        <association property="serviceType" column="type" select="com.qiktone.repository.ConstantRepository.getCompanyType"></association>
-        <association property="domain" column="domain_id" select="com.qiktone.repository.DomainRepository.getById"></association>
-        <association property="host" column="host_id" select="com.qiktone.repository.HostRepository.getById"></association>
+
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+        <result property="shortName" column="short_name"></result>
+        <result property="code" column="code"></result>
+        <result property="disabledReason" column="disabled_reason"></result>
+        <result property="contractNumber" column="contract_number"></result>
+        <result property="maxAccounts" column="max_accounts"></result>
+        <result property="startDate" column="start_date"></result>
+        <result property="availableDate" column="available_date"></result>
+        <result property="contact" column="contact"></result>
+        <result property="phone" column="phone"></result>
+        <result property="fax" column="fax"></result>
+        <result property="email" column="email"></result>
+        <result property="address" column="address"></result>
+        <result property="serviceFee" column="service_fee"></result>
+        <result property="salesman" column="salesman"></result>
+        <result property="isCollected" column="is_collected"></result>
+        <result property="collectDate" column="collect_date"></result>
+
+        <association property="cstate" resultMap="stateRS"/>
+
+        <association property="serviceType" resultMap="typeRS"/>
+
+        <association property="domain"   resultMap="domainRS"/>
+
+        <association property="host"  resultMap="hostRS"/>
+    </resultMap>
+    
+    <resultMap id="stateRS" type="Constant">
+        <id column="stateId" property="id"></id>
+        <result property="descr" column="stateDescr"></result>
+        <result property="code" column="stateCode"></result>
+    </resultMap>
+    <resultMap id="typeRS" type="Constant">
+        <id column="typeId" property="id"></id>
+        <result property="descr" column="typeDescr"></result>
+        <result property="code" column="typeCode"></result>
+    </resultMap>
+    <resultMap id="domainRS" type="Domain">
+        <id property="id" column="domainId"></id>
+        <result property="name" column="domainName"></result>
+        <result property="ip" column="domainIp"></result>
+    </resultMap>
+    <resultMap id="hostRS" type="Host">
+        <id property="id" column="hostId"></id>
+        <result property="name" column="hostName"></result>
+        <result property="ip" column="hostIp"></result>
     </resultMap>
 
 </mapper>

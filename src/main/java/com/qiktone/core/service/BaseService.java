@@ -3,6 +3,7 @@ package com.qiktone.core.service;
 import java.io.Serializable;
 
 import com.qiktone.core.orm.mybatis.Page;
+import com.qiktone.entity.vo.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.qiktone.core.entity.BaseEntity;
@@ -46,5 +47,7 @@ public interface BaseService<Entity extends BaseEntity, PK extends Serializable>
 	public void delete(PK id);
 	
 
-	public void list(Page<Entity> page);
+	public void list(Page<Entity> page,Entity query);
+
+
 }

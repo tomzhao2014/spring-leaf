@@ -7,18 +7,8 @@ package com.qiktone.entity;
  * Time: 11:15
  */
 public class Domain extends BaseDomainEntity {
-    private String name;
     private String ip;
 
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getIp() {
         return ip;

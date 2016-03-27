@@ -5,13 +5,7 @@
 
 <mapper namespace="com.qiktone.repository.HostRepository">
 
-    <select id="list" resultType="Host" >
+    <select id="findAll" resultType="Host" >
         select * from host
     </select>
-
-    <select id="getById"  resultType="Host" parameterType="java.lang.Long">
-        select * from host where id = ${id}
-    </select>
-
-
 </mapper>

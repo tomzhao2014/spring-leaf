@@ -8,4 +8,12 @@ package com.qiktone.entity;
  */
 public class Host extends BaseDomainEntity {
     private String ip;
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
 }
