@@ -1,32 +1,34 @@
 package com.qiktone.web.controller;
 
 import com.qiktone.core.orm.mybatis.Page;
-import com.qiktone.entity.*;
+import com.qiktone.entity.Company;
+import com.qiktone.entity.Constant;
+import com.qiktone.entity.Domain;
+import com.qiktone.entity.Host;
 import com.qiktone.entity.vo.CompanyQuery;
 import com.qiktone.repository.ConstantRepository;
 import com.qiktone.repository.DomainRepository;
 import com.qiktone.repository.HostRepository;
 import com.qiktone.service.CompanyService;
+import com.qiktone.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
  * Created by tom on 16/3/5.
  */
 @Controller
-@RequestMapping("/company")
-public class CompanyController extends BaseController{
+@RequestMapping("/role")
+public class RoleController extends BaseController{
     @Autowired
-    private CompanyService companyService;
+    private RoleService roleService;
 
     @Autowired
     private ConstantRepository constantRepository;
@@ -63,15 +65,7 @@ public class CompanyController extends BaseController{
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(CompanyQuery companyQuery,Integer pageNo,Model model) {
-        if(!companyQuery.isEmpty()){
-            session.setAttribute("query",companyQuery);
-        }
-        if(companyQuery.isEmpty()){
-            companyQuery=(CompanyQuery)session.getAttribute("query");
-        }
-        Page page = new Page<Company>(pageNo);
-        companyService.list(page,companyQuery);
-        model.addAttribute("page",page);
+
         return "company/index";
     }
 
@@ -93,7 +87,7 @@ public class CompanyController extends BaseController{
      */
     @RequestMapping(method = RequestMethod.POST)
     public String create(Company company) {
-        companyService.create(company);
+
         return "redirect:/company";
     }
 
@@ -105,8 +99,8 @@ public class CompanyController extends BaseController{
      */
     @RequestMapping(path = "/edit/{id}")
     public String edit(@PathVariable Long id,Model model){
-        Company company = companyService.getById(id);
-        model.addAttribute("company",company);
+
+
         return "/company/edit";
     }
 
@@ -116,7 +110,7 @@ public class CompanyController extends BaseController{
      * @param company
      */
     public void update(Company company) {
-        companyService.update(company);
+
     }
 
     /**
@@ -126,7 +120,7 @@ public class CompanyController extends BaseController{
      */
     @RequestMapping(path = "/del/{id}")
     public String delete(@PathVariable Long id) {
-        companyService.delete(id);
+
         return "redirect:/company";
     }
 }

@@ -27,10 +27,10 @@ public class Company extends BaseDomainEntity {
     //最多账号数
     private Long maxAccounts;
     //开始日期
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE,pattern = "yyyy-MM-dd")
     private Date startDate;
     //结束日期
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE,pattern = "yyyy-MM-dd")
     private Date availableDate;
     //联系人
     private String  contact;
@@ -55,6 +55,7 @@ public class Company extends BaseDomainEntity {
     //已收费？
     private boolean isCollected;
     //收费日期
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE,pattern = "yyyy-MM-dd")
     private Date collectDate;
 
 

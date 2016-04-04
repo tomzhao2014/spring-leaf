@@ -8,11 +8,11 @@
 
 
     <select id="list" resultType="Role" >
-        select * from company
+        select * from role
     </select>
 
     <select id="getById"  resultType="Role" parameterType="java.lang.Long">
-        select * from domain where id = ${id}
+        select * from role where id = ${id}
     </select>
 
 </mapper>

@@ -4,6 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.qiktone.repository.CompanyRepository">
+    
+    <insert id="insert" parameterType="Company">
+        insert into company (name,short_name,code,type,state,disabled_reason,contract_number,max_accounts,start_date,available_date,contact,phone,
+                              fax,email,address,domain_id,host_id,service_fee,salesman,is_collected,collect_date)
+        VALUES  (#{name},#{shortName},#{code},#{type},#{state},#{disabledReason},#{contractNumber},#{maxAccounts},#{startDate},#{availableDate},#{contact},#{phone},
+                #{fax},#{email},#{address},#{domainId},#{hostId},#{serviceFee},#{salesman},#{isCollected},#{collectDate})
+    </insert>
+    
     <sql id="joinQuery">
          select c.id,c.name,c.short_name,c.code,c.disabled_reason,c.contract_number,c.max_accounts,c.max_accounts,c.start_date,c.available_date,
                 c.contact,c.phone,c.fax,c.email,c.address,c.service_fee,c.salesman,c.is_collected,c.collect_date,
@@ -56,10 +64,10 @@
 
     <select id="getById"  resultMap="companyRS" parameterType="java.lang.Long">
         <include refid="joinQuery"></include>
-         where id = #{id}
+         where c.id = #{id}
     </select>
     
-    <select id="getCompanyCode"  >
+    <select id="getCompanyCode"  resultType="java.lang.String">
         select create_company_code('S') from dual
     </select>
     <resultMap id="companyRS" type="Company">

@@ -25,9 +25,9 @@
         </li>
 
         <li>
-          <a href="/constant">系统常量管理</a>
+          <a href="/constant">公司管理</a>
         </li>
-        <li class="active">添加系统常量</li>
+        <li class="active">编辑公司</li>
       </ul><!-- /.breadcrumb -->
 
 
@@ -35,7 +35,7 @@
     </div>
     <div class="page-content">
       <div class="page-header">
-        <h1>编辑系统常量信息</h1>
+        <h1>编辑公司信息</h1>
       </div>
       <div class="row">
         <div class="col-xs-12">

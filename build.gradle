@@ -61,7 +61,9 @@ dependencies {
             'org.apache.poi:poi-ooxml:3.14',
             'com.belerweb:pinyin4j:2.5.1',
             'com.mortennobel:java-image-scaling:0.8.6',
-            'commons-httpclient:commons-httpclient:3.1'
+            'commons-httpclient:commons-httpclient:3.1',
+            'joda-time:joda-time:2.9.3'
+
 
 
 

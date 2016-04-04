@@ -112,44 +112,6 @@
                       <i class="ace-icon fa fa-pencil bigger-120"></i>
                     </button>
 
-                    <button class="btn btn-xs btn-danger j_del"  conId="${company.id}">
-                      <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                    </button>
-
-                  </div>
-
-                  <div class="hidden-md hidden-lg">
-                    <div class="inline pos-rel">
-                      <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                        <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-                      </button>
-
-                      <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                        <li>
-                          <a href="#" class="tooltip-info" data-rel="tooltip" title="" data-original-title="View">
-																			<span class="blue">
-																				<i class="ace-icon fa fa-search-plus bigger-120"></i>
-																			</span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="#" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit">
-																			<span class="green">
-																				<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-																			</span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="#" class="tooltip-error" data-rel="tooltip" title="" data-original-title="Delete">
-																			<span class="red">
-																				<i class="ace-icon fa fa-trash-o bigger-120"></i>
-																			</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
                   </div>
                 </td>
               </tr>
@@ -206,12 +168,6 @@
       var conId = $(this).attr("conId");
       window.location.href ="/company/edit/"+conId;
     });
-
-    $(".j_del").click(function(){
-      var conId = $(this).attr("conId");
-      window.location.href ="/company/del/"+conId;
-    });
-
 
   })
 </script>
