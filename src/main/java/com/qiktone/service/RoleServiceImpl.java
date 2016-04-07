@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  * Time: 14:02
  */
 @Service
-public class RoleServiceImpl extends BaseEntityService<Role> implements AccountService {
+public class RoleServiceImpl extends BaseEntityService<Role> implements RoleService {
     @Override
     public EntityRepository<Role> getEntityRepository() {
         return null;

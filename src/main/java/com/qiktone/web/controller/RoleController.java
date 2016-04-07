@@ -1,15 +1,12 @@
 package com.qiktone.web.controller;
 
-import com.qiktone.core.orm.mybatis.Page;
 import com.qiktone.entity.Company;
 import com.qiktone.entity.Constant;
 import com.qiktone.entity.Domain;
 import com.qiktone.entity.Host;
-import com.qiktone.entity.vo.CompanyQuery;
 import com.qiktone.repository.ConstantRepository;
 import com.qiktone.repository.DomainRepository;
 import com.qiktone.repository.HostRepository;
-import com.qiktone.service.CompanyService;
 import com.qiktone.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,15 +55,15 @@ public class RoleController extends BaseController{
 
     /**
      *
-     * @param pageNo
+     *
      * @param model
      * @return
      */
 
     @RequestMapping(method = RequestMethod.GET)
-    public String index(CompanyQuery companyQuery,Integer pageNo,Model model) {
+    public String index(Model model) {
 
-        return "company/index";
+        return "role/index";
     }
 
 

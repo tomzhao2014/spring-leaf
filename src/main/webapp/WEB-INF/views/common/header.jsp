@@ -11,7 +11,8 @@
   <!-- bootstrap & fontawesome -->
   <link rel="stylesheet" href="/css/bootstrap.min.css" />
   <link rel="stylesheet" href="/css/font-awesome.min.css" />
-
+  <link rel="stylesheet" href="/css/jquery-ui.custom.min.css" />
+  <link rel="stylesheet" href="/css/chosen.min.css" />
   <!-- page specific plugin styles -->
 
   <!-- text fonts -->
