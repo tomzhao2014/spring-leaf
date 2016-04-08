@@ -4,6 +4,7 @@ import com.qiktone.entity.Company;
 import com.qiktone.entity.Constant;
 import com.qiktone.entity.Domain;
 import com.qiktone.entity.Host;
+import com.qiktone.repository.CompanyRepository;
 import com.qiktone.repository.ConstantRepository;
 import com.qiktone.repository.DomainRepository;
 import com.qiktone.repository.HostRepository;
@@ -11,10 +12,7 @@ import com.qiktone.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,6 +33,9 @@ public class RoleController extends BaseController{
 
     @Autowired
     private HostRepository hostRepository;
+
+    @Autowired
+    private CompanyRepository companyRepository;
 
 
 
@@ -61,8 +62,9 @@ public class RoleController extends BaseController{
      */
 
     @RequestMapping(method = RequestMethod.GET)
-    public String index(Model model) {
-
+    public String index(Long id,Model model) {
+        model.addAttribute("companys",companyRepository.findAll());
+        model.addAttribute("cid",id);
         return "role/index";
     }
 

@@ -70,6 +70,10 @@
     <select id="getCompanyCode"  resultType="java.lang.String">
         select create_company_code('S') from dual
     </select>
+    
+    <select id="findAll" resultType="Company">
+        select id,short_name from company order by id DESC
+    </select>
     <resultMap id="companyRS" type="Company">
 
         <id property="id" column="id"></id>
