@@ -14,116 +14,138 @@
 
 
   <ul class="nav nav-list">
-    <c:choose>
-      <c:when test="${module=='home'}">
-      <li class="active">
-      </c:when>
-      <c:otherwise>
-      <li class="">
-      </c:otherwise>
-    </c:choose>
-      <a href="/home">
-        <i class="menu-icon fa fa-tachometer"></i>
-        <span class="menu-text"> 首页 </span>
-      </a>
-      <b class="arrow"></b>
-    </li>
+    <c:if test="${sessionScope.user.type=='admin'}">
       <c:choose>
-      <c:when test="${module=='company'}">
-      <li class="active">
+        <c:when test="${module=='account'}">
+          <li class="active">
         </c:when>
         <c:otherwise>
-      <li class="">
+          <li class="">
         </c:otherwise>
-        </c:choose>
-      <a href="/company">
-        <i class="menu-icon fa fa-home"></i>
-        <span class="menu-text"> 公司管理 </span>
-      </a>
-
-      <b class="arrow"></b>
-    </li>
-
-      <c:choose>
-      <c:when test="${module=='role'}">
-      <li class="active">
-        </c:when>
-        <c:otherwise>
-      <li class="">
-        </c:otherwise>
-        </c:choose>
-      <a href="/role">
-        <i class="menu-icon fa fa-users"></i>
-        <span class="menu-text"> 角色管理 </span>
-      </a>
-
-      <b class="arrow"></b>
-    </li>
-
-      <c:choose>
-      <c:when test="${module=='account'}">
-      <li class="active">
-        </c:when>
-        <c:otherwise>
-      <li class="">
-        </c:otherwise>
-        </c:choose>
+      </c:choose>
       <a href="/account">
         <i class="menu-icon fa fa-key"></i>
         <span class="menu-text"> 账号管理 </span>
       </a>
 
       <b class="arrow"></b>
-    </li>
+      </li>
+    </c:if>
 
+    <c:if test="${sessionScope.user.type=='service'}">
       <c:choose>
-      <c:when test="${module=='department'}">
-      <li class="active">
+        <c:when test="${module=='home'}">
+          <li class="active">
         </c:when>
         <c:otherwise>
-      <li class="">
+          <li class="">
         </c:otherwise>
-        </c:choose>
+      </c:choose>
+      <a href="/home">
+        <i class="menu-icon fa fa-tachometer"></i>
+        <span class="menu-text"> 首页 </span>
+      </a>
+      <b class="arrow"></b>
+      </li>
+      <c:choose>
+        <c:when test="${module=='company'}">
+          <li class="active">
+        </c:when>
+        <c:otherwise>
+          <li class="">
+        </c:otherwise>
+      </c:choose>
+      <a href="/company">
+        <i class="menu-icon fa fa-home"></i>
+        <span class="menu-text"> 公司管理 </span>
+      </a>
+
+      <b class="arrow"></b>
+      </li>
+
+      <c:choose>
+        <c:when test="${module=='role'}">
+          <li class="active">
+        </c:when>
+        <c:otherwise>
+          <li class="">
+        </c:otherwise>
+      </c:choose>
+      <a href="/role">
+        <i class="menu-icon fa fa-users"></i>
+        <span class="menu-text"> 角色管理 </span>
+      </a>
+
+      <b class="arrow"></b>
+      </li>
+
+      <c:choose>
+        <c:when test="${module=='account'}">
+          <li class="active">
+        </c:when>
+        <c:otherwise>
+          <li class="">
+        </c:otherwise>
+      </c:choose>
+      <a href="/account">
+        <i class="menu-icon fa fa-key"></i>
+        <span class="menu-text"> 账号管理 </span>
+      </a>
+
+      <b class="arrow"></b>
+      </li>
+
+      <c:choose>
+        <c:when test="${module=='department'}">
+          <li class="active">
+        </c:when>
+        <c:otherwise>
+          <li class="">
+        </c:otherwise>
+      </c:choose>
       <a href="/department">
         <i class="menu-icon fa fa-navicon"></i>
         <span class="menu-text"> 部门管理 </span>
       </a>
 
       <b class="arrow"></b>
-    </li>
+      </li>
 
       <c:choose>
-      <c:when test="${module=='employee'}">
-      <li class="active">
+        <c:when test="${module=='employee'}">
+          <li class="active">
         </c:when>
         <c:otherwise>
-      <li class="">
+          <li class="">
         </c:otherwise>
-        </c:choose>
+      </c:choose>
       <a href="/employee">
         <i class="menu-icon fa fa-user"></i>
         <span class="menu-text"> 雇员管理 </span>
       </a>
 
       <b class="arrow"></b>
-    </li>
+      </li>
 
 
       <c:choose>
-      <c:when test="${module=='constant'}">
-      <li class="active">
+        <c:when test="${module=='constant'}">
+          <li class="active">
         </c:when>
         <c:otherwise>
-      <li class="">
+          <li class="">
         </c:otherwise>
-        </c:choose>
+      </c:choose>
       <a href="/constant">
         <i class="menu-icon fa fa-users"></i>
         <span class="menu-text"> 系统常量管理 </span>
       </a>
 
       <b class="arrow"></b>
-    </li>
+      </li>
+    </c:if>
+
+
 
   </ul><!-- /.nav-list -->
 

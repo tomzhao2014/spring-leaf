@@ -1,5 +1,7 @@
 package com.qiktone.entity;
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
+
 /**
  * Created with IntelliJ IDEA.
  * Anthor: Tom Zhao
@@ -9,12 +11,15 @@ package com.qiktone.entity;
 public class Account extends BaseDomainEntity {
     private String username;
     private String type;
+    private Constant atype;
     private String password;
     private String state;
     private Constant astate;
     private Long roleId;
     private Role role;
     private String appType;
+    private Long companyId;
+
 
     public String getUsername() {
         return username;
@@ -78,6 +83,22 @@ public class Account extends BaseDomainEntity {
 
     public void setAstate(Constant astate) {
         this.astate = astate;
+    }
+
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
+    }
+
+    public Constant getAtype() {
+        return atype;
+    }
+
+    public void setAtype(Constant atype) {
+        this.atype = atype;
     }
 }
 

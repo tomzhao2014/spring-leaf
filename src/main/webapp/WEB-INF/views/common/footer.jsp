@@ -19,3 +19,5 @@
 <script src="/js/dataTables/jquery.dataTables.bootstrap.js"></script>
 <script src="/js/select2.min.js"></script>
 <script src="/js/chosen.jquery.min.js"></script>
+<script src="/js/bootbox.min.js"></script>
+<script src="/js/jquery.gritter.min.js"></script>

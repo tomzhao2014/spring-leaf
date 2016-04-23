@@ -4,6 +4,8 @@ import com.qiktone.core.repository.EntityRepository;
 import com.qiktone.entity.Role;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * Anthor: Tom Zhao
@@ -12,4 +14,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface RoleRepository extends EntityRepository<Role> {
+    public List<Role> getRoleByCompany(Long id);
 }

@@ -1,13 +1,7 @@
 package com.qiktone.web.controller;
 
-import com.qiktone.entity.Company;
-import com.qiktone.entity.Constant;
-import com.qiktone.entity.Domain;
-import com.qiktone.entity.Host;
-import com.qiktone.repository.CompanyRepository;
-import com.qiktone.repository.ConstantRepository;
-import com.qiktone.repository.DomainRepository;
-import com.qiktone.repository.HostRepository;
+import com.qiktone.entity.*;
+import com.qiktone.repository.*;
 import com.qiktone.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +31,9 @@ public class RoleController extends BaseController{
     @Autowired
     private CompanyRepository companyRepository;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
 
 
     @ModelAttribute
@@ -49,7 +46,7 @@ public class RoleController extends BaseController{
         model.addAttribute("companyTypes",companyTypes);
         model.addAttribute("companyStateTypes",companyStateTypes);
         model.addAttribute("appTypes",appTypes);
-        model.addAttribute("module","company");
+        model.addAttribute("module","role");
         model.addAttribute("domains",domains);
         model.addAttribute("hosts",hosts);
     }
@@ -63,8 +60,20 @@ public class RoleController extends BaseController{
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(Long id,Model model) {
-        model.addAttribute("companys",companyRepository.findAll());
+        List<Company> companys = companyRepository.findAll();
+        model.addAttribute("companys",companys);
         model.addAttribute("cid",id);
+        if(id!=null){
+
+        }else{
+            id = companys.get(0).getId();
+        }
+        id=118L;
+        //获取默认公司的权限
+        List<Role> roles = roleRepository.getRoleByCompany(id);
+        List<RolePrivilege> modules = roles.get(0).getModules();
+        model.addAttribute("roles",roles);
+        model.addAttribute("modules",modules);
         return "role/index";
     }
 

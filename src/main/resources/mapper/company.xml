@@ -95,6 +95,7 @@
         <result property="isCollected" column="is_collected"></result>
         <result property="collectDate" column="collect_date"></result>
 
+
         <association property="cstate" resultMap="stateRS"/>
 
         <association property="serviceType" resultMap="typeRS"/>

@@ -44,11 +44,11 @@
         <li class="light-blue">
           <a data-toggle="dropdown" href="#" class="dropdown-toggle">
 								<span class="user-info">
-									<small>Welcome,</small>
-									Jason
+									<small>欢迎你,</small>
+									${sessionScope.user.username}
 								</span>
 
-            <i class="ace-icon fa fa-caret-down"></i>
+          <%--  <i class="ace-icon fa fa-caret-down"></i>--%>
           </a>
 
           <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">

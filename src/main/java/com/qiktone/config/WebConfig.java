@@ -1,5 +1,6 @@
 package com.qiktone.config;
 
+import com.qiktone.web.interceptor.AuthorityInterceptor;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
@@ -36,7 +37,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-
+       // registry.addInterceptor(new AuthorityInterceptor());
     }
 
     @Override

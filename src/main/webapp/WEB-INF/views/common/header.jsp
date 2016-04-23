@@ -31,7 +31,7 @@
 
   <link rel="stylesheet" href="/css/bootstrap-datepicker3.min.css"/>
   <!-- inline styles related to this page -->
-
+  <link rel="stylesheet" href="/css/jquery.gritter.min.css"/>
   <!-- ace settings handler -->
   <script src="/js/ace-extra.min.js"></script>
 

@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 公司
@@ -57,6 +58,8 @@ public class Company extends BaseDomainEntity {
     //收费日期
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE,pattern = "yyyy-MM-dd")
     private Date collectDate;
+
+    private List<Role> roles;
 
 
     public String getShortName() {
@@ -253,5 +256,14 @@ public class Company extends BaseDomainEntity {
 
     public void setHost(Host host) {
         this.host = host;
+    }
+
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

@@ -80,13 +80,15 @@
                 </thead>
 
                 <tbody>
-                <tr>
-                  <td class="">Alex</td>
+
+                <tr j_rid="${role.id}">
+                  <td class=""></td>
 
                   <td>
                     <a href="#">alex@email.com</a>
                   </td>
                 </tr>
+
                 </tbody>
               </table>
             </div>

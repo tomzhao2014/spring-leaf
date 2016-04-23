@@ -9,6 +9,8 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * 编码工具类
@@ -106,4 +108,7 @@ public class EncodeUtils {
         }
         return data;
     }
+
+
+
 }
