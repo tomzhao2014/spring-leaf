@@ -68,4 +68,14 @@
         VALUES (#{username},#{state},#{type},#{companyId},#{roleId},#{appType})
     </insert>
 
+    <update id="update" parameterType="Account">
+        update account
+        set username = #{username},
+            state = #{state},
+            app_type = #{appType},
+            type = #{type},
+            role_id = #{roleId}
+        where id = #{id}
+    </update>
+
 </mapper>

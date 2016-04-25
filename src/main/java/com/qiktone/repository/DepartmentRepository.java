@@ -4,6 +4,8 @@ import com.qiktone.core.repository.EntityRepository;
 import com.qiktone.entity.Department;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * DepartmentRepository
  *
@@ -12,4 +14,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface DepartmentRepository extends EntityRepository<Department> {
+    List<Department> findAllDepartmentByCompany(Long companyId);
 }

@@ -3,6 +3,7 @@ package com.qiktone.service;
 import com.qiktone.core.repository.EntityRepository;
 import com.qiktone.core.service.BaseEntityService;
 import com.qiktone.entity.Department;
+import com.qiktone.repository.DepartmentRepository;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,8 +14,14 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DepartmentServiceImpl extends BaseEntityService<Department> implements DepartmentService {
+    private DepartmentRepository departmentRepository;
     @Override
     public EntityRepository<Department> getEntityRepository() {
-        return null;
+        return departmentRepository;
+    }
+
+    @Override
+    public void create(Department department) {
+        super.create(department);
     }
 }

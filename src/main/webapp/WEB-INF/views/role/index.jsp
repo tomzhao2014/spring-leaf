@@ -43,12 +43,12 @@
       <div class="row">
 
         <div class="col-xs-12 col-sm-10">
-          <label for="form-field-select-3">公司选择:</label>
-          <select class="chosen-select form-control" id="form-field-select-3" data-placeholder="Choose a State...">
+          <label for="changeCompany">公司选择:</label>
+          <select class="chosen-select form-control" id="changeCompany" data-placeholder="Choose a State...">
             <option value=""> 请选择公司 </option>
             <c:forEach var="company" items="${companys}">
               <c:choose>
-                <c:when test="${company!=null and company.id ==cid}">
+                <c:when test="${company!=null and company.id ==sessionScope.currentCompanyId}">
                   <option value="${company.id}" selected="selected">${company.shortName}</option>
                 </c:when>
                 <c:otherwise>
@@ -79,16 +79,13 @@
                 </tr>
                 </thead>
 
-                <tbody>
-
-                <tr j_rid="${role.id}">
-                  <td class=""></td>
-
-                  <td>
-                    <a href="#">alex@email.com</a>
-                  </td>
+                <tbody id="roles">
+                <c:forEach items="${roles}" var="role">
+                <tr rid="${role.id}">
+                    <td>role.type</td>
+                    <td>role.descr</td>
                 </tr>
-
+                </c:forEach>
                 </tbody>
               </table>
             </div>
@@ -117,11 +114,7 @@
                   </tr>
                   </thead>
 
-                  <tbody>
-                  <tr>
-                    <td class="">Alex</td>
-                    <td></td>
-                  </tr>
+                  <tbody id="modules">
                   </tbody>
                 </table>
               </div>
@@ -155,14 +148,7 @@
                   </tr>
                   </thead>
 
-                  <tbody>
-                  <tr>
-                    <td class="">Alex</td>
-
-                    <td>
-                      <a href="#">alex@email.com</a>
-                    </td>
-                  </tr>
+                  <tbody id="functions">
                   </tbody>
                 </table>
               </div>
@@ -195,14 +181,7 @@
                   </tr>
                   </thead>
 
-                  <tbody>
-                  <tr>
-                    <td class="">Alex</td>
-
-                    <td>
-                      <a href="#">alex@email.com</a>
-                    </td>
-                  </tr>
+                  <tbody id="ops">
                   </tbody>
                 </table>
               </div>
@@ -215,6 +194,15 @@
   </div><!-- /.main-content -->
 </div><!-- /.main-container -->
     <c:import url="../common/footer.jsp"></c:import>
+
+  <div class="hidden">
+    <table>
+      <tr id="item">
+        <td class="j_first"></td>
+        <td class="j_second"><input type="checkbox"  class="j_check"></td>
+      </tr>
+    </table>
+  </div>
 <script>
   //And for the first simple table, which doesn't have TableTools or dataTables
   //select/deselect all rows according to table header checkbox
@@ -246,22 +234,6 @@
     "sScrollY": "60%", "sScrollX": "2000px"
 
   });
-
-  $(function () {
-    $("#addCompany").click(function(){
-      window.location.href ="/company/add";
-    });
-
-    $(".j_edit").click(function(){
-      var conId = $(this).attr("conId");
-      window.location.href ="/company/edit/"+conId;
-    });
-
-  });
-
-
-
-
 
   jQuery(function($) {
     $('#id-disable-check').on('click', function() {
@@ -304,8 +276,78 @@
 
   });
 
+  $(function(){
+    var companyId = "${sessionScope.currentCompanyId}";
 
 
+
+    $("#changeCompany").on("change",function(){
+      var cid = $(this).val()?$(this).val():companyId;
+      var type = {"company":"公司管理员","user":"一般用户"}
+      $.ajax({
+        type: "POST",
+        url: "/role/list/"+cid,
+        success: function(data){
+          $("#roles").html("");
+          console.log(data);
+          $(data).each(function(){
+            var role = this;
+
+            var item = $("#item").clone();
+            item.find(".j_first").html(type[role.type]);
+            item.find(".j_second").html(role.name);
+            item.attr("rid",role.id);
+            $("#roles").append(item);
+          });
+          $("#roles tr:eq(0)").
+        }
+      });
+    });
+
+
+    //默认打开
+    $("#roles").on("click","tr:eq(0)",function(){
+        var rid = $(this).attr("rid");
+      $.ajax({
+        type: "GET",
+        url: "/privilege/modules/"+rid,
+        success: function(rs){
+          $("#modules").html("");
+          var  modules = rs['modules'];
+
+          $(modules).each(function(k1,module){
+            var module = this;
+            var item = $("#item").clone();
+            item.find(".j_first").html(module.descr);
+
+            if(module.hasAuthority){
+              item.find(".j_check")[0].checked=true;
+            }else{
+              item.find(".j_check")[0].checked=false;
+            }
+            item.attr("mname",module.name);
+            $("#module").append(item);
+
+          });
+        }
+      });
+
+    });
+
+    //
+
+
+
+
+    $("#addCompany").click(function(){
+      window.location.href ="/company/add";
+    });
+
+    $(".j_edit").click(function(){
+      var conId = $(this).attr("conId");
+      window.location.href ="/company/edit/"+conId;
+    });
+  });
 
 
 </script>

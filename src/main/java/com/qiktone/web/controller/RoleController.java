@@ -35,6 +35,8 @@ public class RoleController extends BaseController{
     private RoleRepository roleRepository;
 
 
+    @Autowired
+    private RolePrivilegeRepository privilegeRepository;
 
     @ModelAttribute
     public void init(Model model){
@@ -52,31 +54,35 @@ public class RoleController extends BaseController{
     }
 
     /**
-     *
-     *
-     * @param model
      * @return
      */
 
     @RequestMapping(method = RequestMethod.GET)
-    public String index(Long id,Model model) {
+    public String index(Long id) {
+       if(session.getAttribute("currentCompanyId")!=null){
+           id = (Long)session.getAttribute("currentCompanyId");
+       }
         List<Company> companys = companyRepository.findAll();
+        session.setAttribute("currentCompanyId",id);
         model.addAttribute("companys",companys);
-        model.addAttribute("cid",id);
-        if(id!=null){
 
-        }else{
-            id = companys.get(0).getId();
-        }
-        id=118L;
         //获取默认公司的权限
         List<Role> roles = roleRepository.getRoleByCompany(id);
-        List<RolePrivilege> modules = roles.get(0).getModules();
+
+        //获取系统所有权限
+        //List<RolePrivilege> sysModules = privilegeRepository.getModuleByRole(0L);
         model.addAttribute("roles",roles);
-        model.addAttribute("modules",modules);
+       // model.addAttribute("modules",modules);
+       // model.addAttribute("sysModules",sysModules);
         return "role/index";
     }
 
+    @RequestMapping(path = "/list/{cid}",method = RequestMethod.POST)
+    public @ResponseBody List<Role> list(@PathVariable("cid") Long cid){
+        session.setAttribute("currentCompanyId",cid);
+      List<Role> roles = roleRepository.getRoleByCompany(cid);
+        return roles;
+    }
 
     /**
      *

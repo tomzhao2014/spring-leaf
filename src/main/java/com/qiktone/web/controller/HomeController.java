@@ -55,6 +55,7 @@ public class HomeController extends BaseController{
         return "login";
     }
     @RequestMapping(path = "login",method = RequestMethod.POST)
+
        public String login(String username,String password){
         password = Md5.GetMD5Code(password);
         Account account = accountRepository.login(username,password);

@@ -3,13 +3,11 @@ package com.qiktone.web.controller;
 import com.qiktone.entity.*;
 import com.qiktone.repository.*;
 import com.qiktone.service.AccountService;
-import com.qiktone.service.RoleService;
 import com.qiktone.util.Md5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -17,10 +15,13 @@ import java.util.List;
  * Created by tom on 16/3/5.
  */
 @Controller
-@RequestMapping("/account")
-public class AccountController extends BaseController{
+@RequestMapping("/department")
+public class DepartmentController extends BaseController{
     @Autowired
     private AccountRepository accountRepository;
+
+    @Autowired
+    private DepartmentRepository departmentRepository;
 
     @Autowired
     private ConstantRepository constantRepository;
@@ -58,34 +59,24 @@ public class AccountController extends BaseController{
 
     /**
      *
-     *
-     * @param model
      * @return
      */
 
     @RequestMapping(method = RequestMethod.GET)
-    public String index(Long id,Model model) {
-        Account user = (Account)session.getAttribute("user");
-        List<Role> roles = null;
-        List<Account> accounts = null;
-        if(id!=null){
-            accounts = accountRepository.findByCompay(id);
-            roles = roleRepository.getRoleByCompany(id);
-        }
+    public String index(Long id) {
+        List<Department> departments = departmentRepository.findAllDepartmentByCompany(id);
         List<Company> companys = companyRepository.findAll();
         model.addAttribute("companys",companys);
-        model.addAttribute("roles",roles);
-        model.addAttribute("accounts",accounts);
         session.setAttribute("currentCompanyId",id);
-        return "account/index";
+        model.addAttribute("departments",departments);
+        return "department/index";
     }
 
 
     @RequestMapping(path = "/list/{cid}",method = RequestMethod.POST)
-    public @ResponseBody List<Account> list(@PathVariable("cid") Long cid){
-        session.setAttribute("currentCompanyId",cid);
-        List<Account>  accounts = accountRepository.findByCompay(cid);
-        return accounts;
+    public @ResponseBody List<Department> list(@PathVariable("cid") Long cid){
+
+        return null;
     }
 
     /**
@@ -94,7 +85,7 @@ public class AccountController extends BaseController{
      */
     @RequestMapping(path = "/add")
     public String add(){
-        return "account/add";
+        return "department/add";
     }
 
 
@@ -104,13 +95,10 @@ public class AccountController extends BaseController{
      * @return
      */
     @RequestMapping(method = RequestMethod.POST)
-    public String   create(Account account) {
-        Long companyId = (Long)session.getAttribute("currentCompanyId");
-        account.setCompanyId(companyId);
-        account.setPassword(Md5.GetMD5Code(account.getPassword()));
-        accountService.create(account);
+    public String   create(Department department) {
 
-        return "redirect:/account";
+
+        return "redirect:/department";
     }
 
     /**
@@ -120,9 +108,7 @@ public class AccountController extends BaseController{
      */
     @RequestMapping(path = "/edit/{id}")
     public String edit(@PathVariable Long id){
-        Account account = accountRepository.getById(id);
-        model.addAttribute("account",account);
-        return "/account/edit";
+        return "/department/edit";
     }
 
 
@@ -130,9 +116,9 @@ public class AccountController extends BaseController{
      *
      */
     @RequestMapping(method = RequestMethod.PUT)
-    public String update(Account account) {
-        accountRepository.update(account);
-        return "redirect:/account";
+    public String update(Department department) {
+
+        return "redirect:/department";
     }
 
     /**
@@ -143,7 +129,7 @@ public class AccountController extends BaseController{
     @RequestMapping(path = "/del/{id}")
     public String delete(@PathVariable Long id) {
 
-        return "redirect:/company";
+        return "redirect:/department";
     }
 
 

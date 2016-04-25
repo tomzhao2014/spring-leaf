@@ -21,4 +21,6 @@ public interface EntityRepository<Entity extends BaseEntity>{
 
 	List<Entity> list(Page<Entity> page,Entity query);
 
+	List<Entity> findAll();
+
 }
