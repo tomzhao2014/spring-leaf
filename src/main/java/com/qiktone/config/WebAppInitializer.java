@@ -1,13 +1,17 @@
 package com.qiktone.config;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
+
+;
+
+
 
 /**
  * Created by tom on 15/12/22.
@@ -37,14 +41,24 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
     @Override
     protected Filter[] getServletFilters() {
-
+        //页面编码设置
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
         characterEncodingFilter.setEncoding("UTF-8");
         characterEncodingFilter.setForceEncoding(true);
 
-
+        //HTTP PUT方法支持
         HiddenHttpMethodFilter hiddenHttpMethodFilter = new HiddenHttpMethodFilter();
-        return new Filter[]{characterEncodingFilter,hiddenHttpMethodFilter};
+
+
+        //shiro配置
+        DelegatingFilterProxy shiroFilter = new DelegatingFilterProxy();
+        shiroFilter.setTargetFilterLifecycle(true);
+
+
+
+        return new Filter[]{characterEncodingFilter,hiddenHttpMethodFilter,shiroFilter};
+
+
     }
 
 

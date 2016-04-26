@@ -1,6 +1,6 @@
 package com.qiktone.entity;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
+
 
 /**
  * Created with IntelliJ IDEA.
