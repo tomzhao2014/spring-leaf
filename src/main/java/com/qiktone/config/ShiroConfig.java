@@ -23,12 +23,13 @@ public class ShiroConfig {
                 "            # more URL-to-FilterChain definitions here";
 
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-        shiroFilterFactoryBean.setFilterChainDefinitionMap();
+      // shiroFilterFactoryBean.setFilterChainDefinitionMap();
         shiroFilterFactoryBean.setFilterChainDefinitions(filterDefinitions);
         shiroFilterFactoryBean.setLoginUrl("/login");
         shiroFilterFactoryBean.setSuccessUrl("/home");
         shiroFilterFactoryBean.setUnauthorizedUrl("/unauthorized");
-        shiroFilterFactoryBean.setSecurityManager();
+      //  shiroFilterFactoryBean.setSecurityManager();
+        return shiroFilterFactoryBean;
     }
 
 
