@@ -45,6 +45,8 @@ dependencies {
     compile (
             "org.springframework:spring-webmvc:$springVersion",
             "org.springframework:spring-jdbc:$springVersion",
+            "org.springframework:spring-test:$springVersion",
+            "org.springframework:spring-context-support:$springVersion",
             "org.mybatis:mybatis:3.3.0",
             "org.mybatis:mybatis-spring:1.2.3",
             "com.alibaba:druid:1.0.15",
@@ -66,7 +68,11 @@ dependencies {
             'joda-time:joda-time:2.9.3',
             "org.apache.shiro:shiro-core:${shiroVersion}",
             "org.apache.shiro:shiro-web:${shiroVersion}",
-            "org.apache.shiro:shiro-spring:${shiroVersion}"
+            "org.apache.shiro:shiro-spring:${shiroVersion}",
+            'org.freemarker:freemarker:2.3.23',
+            'org.apache.commons:commons-email:1.4'
+
+
 
 
 

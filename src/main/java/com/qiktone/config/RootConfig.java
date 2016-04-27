@@ -13,6 +13,8 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
@@ -27,6 +29,8 @@ import javax.sql.DataSource;
 //@PropertySource("classpath:/application-develop.properties")
 
 @EnableTransactionManagement
+@EnableAsync
+@EnableScheduling
 //@ImportResource("classpath:system-config.xml")
 @Import({ShiroConfig.class})
 public class RootConfig {
@@ -46,7 +50,7 @@ public class RootConfig {
     public DataSource dataSource(){
         log.debug("数据源配置");
         DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setUrl("jdbc:mysql://localhost:3306/qiktone?userUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/bxwd?userUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull");
         dataSource.setUsername("root");
         dataSource.setPassword("123456");
         dataSource.setInitialSize(1);
