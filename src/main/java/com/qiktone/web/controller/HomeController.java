@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 /**
@@ -76,5 +77,13 @@ public class HomeController extends BaseController{
     public String logout(){
         session.invalidate();
         return "login";
+    }
+
+
+    @RequestMapping(method = RequestMethod.GET)
+    public String query(@RequestParam("ccod") String ccod,@RequestParam("number") String number){
+
+        return "query";
+
     }
 }
