@@ -17,5 +17,6 @@ public class EmailSendListener implements ApplicationListener<EmailSendEvent> {
     @Async
     public void onApplicationEvent(EmailSendEvent event) {
 
+
     }
 }

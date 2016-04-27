@@ -1,6 +1,7 @@
 package com.qiktone;
 
 import com.qiktone.config.RootConfig;
+import com.qiktone.events.event.EmailSendEvent;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,9 @@ public class ShiroTest {
 
     @Test
     public void testAsynEvent(){
-
+        System.out.println("1111111111");
+        applicationContext.publishEvent(new EmailSendEvent("1323"));
+        System.out.println("3333333333");
     }
 
 }
