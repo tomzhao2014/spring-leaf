@@ -72,18 +72,6 @@ dependencies {
             'org.freemarker:freemarker:2.3.23',
             'org.apache.commons:commons-email:1.4'
 
-
-
-
-
-
-
-
-
-
-
-
-
     )
 
     providedCompile(

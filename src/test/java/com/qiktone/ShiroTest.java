@@ -19,6 +19,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes={RootConfig.class})
+
 public class ShiroTest {
 
     @Autowired

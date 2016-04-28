@@ -6,6 +6,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
@@ -13,10 +15,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.sql.DataSource;
 
@@ -24,33 +22,38 @@ import javax.sql.DataSource;
  * Created by tom on 15/12/22.
  */
 @Configuration
-@ComponentScan(basePackages={"com.qiktone.*"}, excludeFilters={@ComponentScan.Filter(type= FilterType.ANNOTATION, value=EnableWebMvc.class),
-        @ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.qiktone.web.*Controller")})
-//@PropertySource("classpath:/application-develop.properties")
-
-@EnableTransactionManagement
+/*@EnableTransactionManagement
 @EnableAsync
-@EnableScheduling
-//@ImportResource("classpath:system-config.xml")
-@Import({ShiroConfig.class})
+@EnableScheduling*/
+/*@ComponentScan(basePackages={"com.qiktone.*"}, excludeFilters={@ComponentScan.Filter(type= FilterType.ANNOTATION, value=EnableWebMvc.class),
+        @ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.qiktone.web.*Controller")})*/
+/*@Import({ShiroConfig.class})*/
 public class RootConfig {
 
     private Log log = LogFactory.getLog(RootConfig.class);
 
-   /* @Value("${jdbc.url}")
-    private String url;
+
+
+    @Value("${jdbc.url}")
+    protected String url;
 
     @Value("${jdbc.username}")
     private String username;
 
     @Value("${jdbc.password}")
-    private String password;*/
+    private String password;
 
     @Bean(initMethod = "init",destroyMethod = "close")
     public DataSource dataSource(){
+
+
+
         log.debug("数据源配置");
+        log.debug(url);
+        log.debug(username);
+       // log.debug(env.getProperty("jdbc.url"));
         DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setUrl("jdbc:mysql://localhost:3306/qiktone?userUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/yanfa1?userUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull");
         dataSource.setUsername("root");
         dataSource.setPassword("123456");
         dataSource.setInitialSize(1);
@@ -95,9 +98,27 @@ public class RootConfig {
     }
 
 
+    /**
+     *
+     * PropertySourcesPlaceHolderConfigurer Bean only required for @Value("{}") annotations.
+     * Remove this bean if you are not using @Value annotations for injecting properties.
+     *
+     * @return
+     */
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-        return new PropertySourcesPlaceholderConfigurer();
+        PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer = new PropertySourcesPlaceholderConfigurer();
+        propertySourcesPlaceholderConfigurer.setLocation(new ClassPathResource("application-develop.properties"));
+        return propertySourcesPlaceholderConfigurer;
+    }
+
+
+
+    @Bean
+    public PropertyPlaceholderConfigurer propertyPlaceholderConfigurer(){
+        PropertyPlaceholderConfigurer propertyPlaceholderConfigurer = new PropertyPlaceholderConfigurer();
+        propertyPlaceholderConfigurer.setLocations(new ClassPathResource("application-develop.properties"));
+        return propertyPlaceholderConfigurer;
     }
 
 }
