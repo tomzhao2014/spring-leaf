@@ -15,6 +15,10 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.sql.DataSource;
 
@@ -22,11 +26,11 @@ import javax.sql.DataSource;
  * Created by tom on 15/12/22.
  */
 @Configuration
-/*@EnableTransactionManagement
+@EnableTransactionManagement
 @EnableAsync
-@EnableScheduling*/
-/*@ComponentScan(basePackages={"com.qiktone.*"}, excludeFilters={@ComponentScan.Filter(type= FilterType.ANNOTATION, value=EnableWebMvc.class),
-        @ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.qiktone.web.*Controller")})*/
+@EnableScheduling
+@ComponentScan(basePackages={"com.qiktone.*"}, excludeFilters={@ComponentScan.Filter(type= FilterType.ANNOTATION, value=EnableWebMvc.class),
+        @ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.qiktone.web.*Controller")})
 /*@Import({ShiroConfig.class})*/
 public class RootConfig {
 
@@ -45,17 +49,14 @@ public class RootConfig {
 
     @Bean(initMethod = "init",destroyMethod = "close")
     public DataSource dataSource(){
-
-
-
         log.debug("数据源配置");
         log.debug(url);
         log.debug(username);
        // log.debug(env.getProperty("jdbc.url"));
         DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setUrl("jdbc:mysql://localhost:3306/yanfa1?userUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull");
+        dataSource.setUrl("jdbc:mysql://10.99.3.100:3306/qik56?userUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull");
         dataSource.setUsername("root");
-        dataSource.setPassword("123456");
+        dataSource.setPassword("snlkjn49#8@4&rl28dnm");
         dataSource.setInitialSize(1);
         dataSource.setMinIdle(1);
         dataSource.setMaxActive(19);
@@ -112,13 +113,5 @@ public class RootConfig {
         return propertySourcesPlaceholderConfigurer;
     }
 
-
-
-    @Bean
-    public PropertyPlaceholderConfigurer propertyPlaceholderConfigurer(){
-        PropertyPlaceholderConfigurer propertyPlaceholderConfigurer = new PropertyPlaceholderConfigurer();
-        propertyPlaceholderConfigurer.setLocations(new ClassPathResource("application-develop.properties"));
-        return propertyPlaceholderConfigurer;
-    }
 
 }

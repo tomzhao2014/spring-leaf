@@ -24,7 +24,7 @@ public class RolePrivilegeController extends BaseController{
     @Autowired
     private RolePrivilegeRepository privilegeRepository;
 
-    @RequestMapping(path = "/modules/{rid}")
+  /*  @RequestMapping(path = "/modules/{rid}")
     public@ResponseBody Map<String,List<RolePrivilege>> modules(@PathVariable Long rid){
         Map<String,List<RolePrivilege>> rs = new HashMap<String, List<RolePrivilege>>();
         List<RolePrivilege> modules = privilegeRepository.getModuleByRole(rid);
@@ -42,5 +42,5 @@ public class RolePrivilegeController extends BaseController{
     @RequestMapping(path = "/ops/{rid}/{oname}")
     public @ResponseBody List<RolePrivilege> ops(@PathVariable Long rid,@PathVariable String oname){
         return privilegeRepository.getFunctionByModuleNameAndRole(oname, rid);
-    }
+    }*/
 }

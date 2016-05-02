@@ -28,14 +28,8 @@ public class ConstantController extends BaseController{
         model.addAttribute("module","constant");
     }
 
-    /**
-     *
-     * @param pageNo
-     * @param model
-     * @return
-     */
 
-    @RequestMapping(path = "",method = RequestMethod.GET)
+  /*  @RequestMapping(path = "",method = RequestMethod.GET)
     public String index(Integer pageNo,Constant constant,Model model) {
         Page page = new Page<Constant>(pageNo);
         constantService.list(page,constant);
@@ -43,33 +37,21 @@ public class ConstantController extends BaseController{
         return "constant/index";
     }
 
-    /**
-     *
-     * @return
-     */
+
     @RequestMapping(path = "/add")
     public String add(){
         return "constant/add";
     }
 
 
-    /**
-     *
-     * @param constant
-     * @return
-     */
+
     @RequestMapping(method = RequestMethod.POST)
     public String create(Constant constant) {
         constantService.create(constant);
         return "redirect:/constant";
     }
 
-    /**
-     * a
-     * @param id
-     * @param model
-     * @return
-     */
+
     @RequestMapping(path = "/edit/{id}")
     public String edit(@PathVariable Long id,Model model){
         Constant constant = constantService.getById(id);
@@ -78,24 +60,17 @@ public class ConstantController extends BaseController{
     }
 
 
-    /**
-     *
-     * @param constant
-     */
+
     @RequestMapping(method = RequestMethod.PUT)
     public String update(Constant constant) {
         constantService.update(constant);
         return "redirect:/constant";
     }
 
-    /**
-     *
-     * @param id
-     * @return
-     */
+
     @RequestMapping(path = "/del/{id}")
     public String delete(@PathVariable Long id) {
         constantService.delete(id);
         return "redirect:/constant";
-    }
+    }*/
 }

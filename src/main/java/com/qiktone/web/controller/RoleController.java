@@ -38,7 +38,7 @@ public class RoleController extends BaseController{
     @Autowired
     private RolePrivilegeRepository privilegeRepository;
 
-    @ModelAttribute
+   /* @ModelAttribute
     public void init(Model model){
         List<Constant> companyTypes = constantRepository.findByType("company_type");
         List<Constant> companyStateTypes = constantRepository.findByType("company_state_type");
@@ -53,9 +53,6 @@ public class RoleController extends BaseController{
         model.addAttribute("hosts",hosts);
     }
 
-    /**
-     * @return
-     */
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(Long id) {
@@ -84,33 +81,21 @@ public class RoleController extends BaseController{
         return roles;
     }
 
-    /**
-     *
-     * @return
-     */
+
     @RequestMapping(path = "/add")
     public String add(){
         return "company/add";
     }
 
 
-    /**
-     *
-     * @param company
-     * @return
-     */
+
     @RequestMapping(method = RequestMethod.POST)
     public String create(Company company) {
 
         return "redirect:/company";
     }
 
-    /**
-     * a
-     * @param id
-     * @param model
-     * @return
-     */
+
     @RequestMapping(path = "/edit/{id}")
     public String edit(@PathVariable Long id,Model model){
 
@@ -119,22 +104,14 @@ public class RoleController extends BaseController{
     }
 
 
-    /**
-     *
-     * @param company
-     */
+
     public void update(Company company) {
 
     }
 
-    /**
-     *
-     * @param id
-     * @return
-     */
     @RequestMapping(path = "/del/{id}")
     public String delete(@PathVariable Long id) {
 
         return "redirect:/company";
-    }
+    }*/
 }

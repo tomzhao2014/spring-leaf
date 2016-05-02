@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @RequestMapping(path = "/")
 public class InterfaceController {
-    @RequestMapping(path = "table")
+   /* @RequestMapping(path = "table")
     public String table(@RequestParam String ccode,@RequestParam String number){
 
         return "table";
 
     }
-
+*/
 }

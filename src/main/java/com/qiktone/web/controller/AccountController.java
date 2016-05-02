@@ -56,12 +56,6 @@ public class AccountController extends BaseController{
         model.addAttribute("hosts",hosts);
     }
 
-    /**
-     *
-     *
-     * @param model
-     * @return
-     */
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(Long id,Model model) {
@@ -88,21 +82,14 @@ public class AccountController extends BaseController{
         return accounts;
     }
 
-    /**
-     *
-     * @return
-     */
+   /*
     @RequestMapping(path = "/add")
     public String add(){
         return "account/add";
     }
 
 
-    /**
-     *
-     * @param
-     * @return
-     */
+
     @RequestMapping(method = RequestMethod.POST)
     public String   create(Account account) {
         Long companyId = (Long)session.getAttribute("currentCompanyId");
@@ -113,11 +100,7 @@ public class AccountController extends BaseController{
         return "redirect:/account";
     }
 
-    /**
-     * a
-     * @param id
-     * @return
-     */
+
     @RequestMapping(path = "/edit/{id}")
     public String edit(@PathVariable Long id){
         Account account = accountRepository.getById(id);
@@ -126,25 +109,19 @@ public class AccountController extends BaseController{
     }
 
 
-    /**
-     *
-     */
+
     @RequestMapping(method = RequestMethod.PUT)
     public String update(Account account) {
         accountRepository.update(account);
         return "redirect:/account";
     }
 
-    /**
-     *
-     * @param id
-     * @return
-     */
+
     @RequestMapping(path = "/del/{id}")
     public String delete(@PathVariable Long id) {
 
         return "redirect:/company";
     }
-
+*/
 
 }

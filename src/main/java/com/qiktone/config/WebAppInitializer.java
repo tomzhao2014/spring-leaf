@@ -56,7 +56,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
 
 
-        return new Filter[]{characterEncodingFilter,hiddenHttpMethodFilter,shiroFilter};
+        return new Filter[]{characterEncodingFilter,hiddenHttpMethodFilter};
 
 
     }

@@ -1,9 +1,13 @@
-﻿<!DOCTYPE html>
+﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>chaxunjieguo</title>
   <link rel="stylesheet" type="text/css" href="chaxunjieguo.css">
+  <script src="/js/jquery.min.js"></script>
   <style>
 
     *{margin: 0px;
@@ -56,25 +60,7 @@
   </style>
 </head>
 <body>
-<!--
-int32 CIDBMysql::QueryShipmentSummary(const std::string &ccode,const std::string &number,CAPPParamItem *presult)
-{
-	std::string sql;
-	sql = "select s.pickup_date,s.accept_date,s.service_date,s.arrived_date,s.dispach_station_name,s.dest_station_name,s.consignor_name,s.consignee_name,s.consignor_contact,s.consignee_contact,s.consignor_phone,s.consignee_phone,s.consignor_address,s.consignee_address,s.goods_name,s.package_name,s.piece,s.weight,s.volume,n.descr from SHIPPING_ORDER s,LOCAL_SHIPPING_ORDER t,COMPANY c, CONSTANT n where t.shipping_order_id=s.id and s.number='";
-	sql += number;
-	sql += "' and n.type='shipping_order_state_type' and n.code=t.state and s.company_id=c.id and c.code='";
-	sql += ccode;
-	sql += "' limit 1";
-	g_Log.printf(LOG_LEVEL_MSG,"%s,%d\n %s",__FILE__,__LINE__,sql.c_str());
-	if(-1 == myquery(sql.c_str()))
-	{
-		g_Log.printf(LOG_LEVEL_ERROR,"%s,%d\n %s",__FILE__,__LINE__,GetLastError());
-		return -1;
-	}
 
-
-
--->
 <div>
   <h2>查询结果</h2>
 </div>
@@ -84,14 +70,14 @@ int32 CIDBMysql::QueryShipmentSummary(const std::string &ccode,const std::string
     <h4>运单基本信息</h4>
   </div>
   <div class="xq">
-    <li><h3>单号：</h3></li>
-    <li><h3>提货日期：</h3></li>
-    <li><h3>当前状态：</h3></li>
-    <li><h3>受理日期：</h3></li>
-    <li><h3>收货地址：</h3></li>
-    <li><h3>发货日期：</h3></li>
-    <li><h3>到货日期：</h3></li>
-    <li><h3>到达日期：</h3></li>
+    <li><h3>单号：${result.number}</h3></li>
+    <li><h3>提货日期：<c:if test="${result.pickupDate!=null}"> <fmt:formatDate value="${result.availableDate}" pattern="yyyy-MM-dd"/> </c:if></h3></li>
+    <li><h3>当前状态：${result.descr}</h3></li>
+    <li><h3>受理日期：<c:if test="${result.acceptDate!=null}"> <fmt:formatDate value="${result.acceptDate}" pattern="yyyy-MM-dd"/> </c:if></h3></li>
+    <li><h3>收货地址：${result.consigneeAddress}</h3></li>
+    <li><h3>发货日期：<c:if test="${result.workingTime!=null}"> <fmt:formatDate value="${result.workingTime}" pattern="yyyy-MM-dd"/> </c:if></h3></li>
+    <li><h3>到货日期：<c:if test="${result.arrivedDate!=null}"> <fmt:formatDate value="${result.arrivedDate}" pattern="yyyy-MM-dd "/> </c:if></h3></li>
+    <li><h3>到达日期：<c:if test="${result.arrivedDate!=null}"> <fmt:formatDate value="${result.arrivedDate}" pattern="yyyy-MM-dd"/> </c:if></h3></li>
   </div>
 
   <div class="container" id="container">
@@ -99,10 +85,10 @@ int32 CIDBMysql::QueryShipmentSummary(const std::string &ccode,const std::string
       <h4>发货人</h4>
     </div>
     <div class="xq">
-      <li><h3>发货单位：</h3></li>
-      <li><h3>联系人：</h3></li>
-      <li><h3>电话：</h3></li>
-      <li><h3>提货地址：</h3></li>
+      <li><h3>发货单位：${result.consignorName}</h3></li>
+      <li><h3>联系人：${result.consignorContact}</h3></li>
+      <li><h3>电话：${result.consignorPhone}</h3></li>
+      <li><h3>提货地址：${result.consignorAddress}</h3></li>
     </div>
   </div>
 
@@ -111,10 +97,10 @@ int32 CIDBMysql::QueryShipmentSummary(const std::string &ccode,const std::string
       <h4>收货人</h4>
     </div>
     <div class="xq">
-      <li><h3>收货单位：</h3></li>
-      <li><h3>联系人：</h3></li>
-      <li><h3>电话：</h3></li>
-      <li><h3>收货地址：</h3></li>
+      <li><h3>收货单位：${result.consigneeName}</h3></li>
+      <li><h3>联系人：${result.consigneeContact}</h3></li>
+      <li><h3>电话：${result.consigneePhone}</h3></li>
+      <li><h3>收货地址：${result.consigneeAddress}</h3></li>
     </div>
   </div>
 
@@ -123,10 +109,10 @@ int32 CIDBMysql::QueryShipmentSummary(const std::string &ccode,const std::string
       <h4>运单详情</h4>
     </div>
     <div class="xq">
-      <li><h3>发站：</h3></li>
-      <li><h3>货物名称：</h3></li>
-      <pre><li><h3>件数：               件</h3></li></pre>
-      <pre><li><h3>体积：               <ins>m</ins>3</h3></li></pre>
+      <li><h3>发站：${result.dispachStationName}</h3></li>
+      <li><h3>货物名称：${result.goodsName}</h3></li>
+      <pre><li><h3>件数：${result.piece} 件</h3></li></pre>
+      <pre><li><h3>体积：${result.volume} <ins>m</ins>3</h3></li></pre>
     </div>
   </div>
 
@@ -135,14 +121,22 @@ int32 CIDBMysql::QueryShipmentSummary(const std::string &ccode,const std::string
       <h4></h4>
     </div>
     <div class="xq">
-      <li><h3>到站：</h3></li>
-      <li><h3>包装：</h3></li>
-      <pre><li><h3>重量：                 kg</h3></li></pre>
-      <li><h3>：</h3></li>
+      <li><h3>到站：${result.destStationName}</h3></li>
+      <li><h3>包装：${result.packageName}</h3></li>
+      <pre><li><h3>重量： ${result.weight}kg </h3></li></pre>
+      <li><h3></h3></li>
     </div>
   </div>
 
 
 </div>
+<script>
+  $(function(){
+     var result = "${result}";
+    if(!result){
+      alert("本次查询没有符合的结果，请输入正确的单号和部门");
+    }
+  })
+</script>
 </body>
 </html>

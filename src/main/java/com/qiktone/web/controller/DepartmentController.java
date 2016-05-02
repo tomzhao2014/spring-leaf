@@ -43,7 +43,7 @@ public class DepartmentController extends BaseController{
 
 
 
-    @ModelAttribute
+  /*  @ModelAttribute
     public void init(Model model){
 
         List<Constant> accountStateTypes = constantRepository.findByType("account_state_type");
@@ -57,10 +57,7 @@ public class DepartmentController extends BaseController{
         model.addAttribute("hosts",hosts);
     }
 
-    /**
-     *
-     * @return
-     */
+
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(Long id) {
@@ -79,21 +76,14 @@ public class DepartmentController extends BaseController{
         return null;
     }
 
-    /**
-     *
-     * @return
-     */
+
     @RequestMapping(path = "/add")
     public String add(){
         return "department/add";
     }
 
 
-    /**
-     *
-     * @param
-     * @return
-     */
+
     @RequestMapping(method = RequestMethod.POST)
     public String   create(Department department) {
 
@@ -101,36 +91,25 @@ public class DepartmentController extends BaseController{
         return "redirect:/department";
     }
 
-    /**
-     * a
-     * @param id
-     * @return
-     */
+
     @RequestMapping(path = "/edit/{id}")
     public String edit(@PathVariable Long id){
         return "/department/edit";
     }
 
 
-    /**
-     *
-     */
     @RequestMapping(method = RequestMethod.PUT)
     public String update(Department department) {
 
         return "redirect:/department";
     }
 
-    /**
-     *
-     * @param id
-     * @return
-     */
+
     @RequestMapping(path = "/del/{id}")
     public String delete(@PathVariable Long id) {
 
         return "redirect:/department";
-    }
+    }*/
 
 
 }

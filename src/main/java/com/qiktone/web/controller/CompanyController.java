@@ -38,7 +38,7 @@ public class CompanyController extends BaseController{
     private HostRepository hostRepository;
 
 
-
+/*
     @ModelAttribute
     public void init(Model model){
         List<Constant> companyTypes = constantRepository.findByType("company_type");
@@ -54,12 +54,7 @@ public class CompanyController extends BaseController{
         model.addAttribute("hosts",hosts);
     }
 
-    /**
-     *
-     * @param pageNo
-     * @param model
-     * @return
-     */
+
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(CompanyQuery companyQuery,Integer pageNo,Model model) {
@@ -76,33 +71,21 @@ public class CompanyController extends BaseController{
     }
 
 
-    /**
-     *
-     * @return
-     */
+
     @RequestMapping(path = "/add")
     public String add(){
         return "company/add";
     }
 
 
-    /**
-     *
-     * @param company
-     * @return
-     */
+
     @RequestMapping(method = RequestMethod.POST)
     public String create(Company company) {
         companyService.create(company);
         return "redirect:/company";
     }
 
-    /**
-     * a
-     * @param id
-     * @param model
-     * @return
-     */
+
     @RequestMapping(path = "/edit/{id}")
     public String edit(@PathVariable Long id,Model model){
         Company company = companyService.getById(id);
@@ -111,22 +94,15 @@ public class CompanyController extends BaseController{
     }
 
 
-    /**
-     *
-     * @param company
-     */
+
     public void update(Company company) {
         companyService.update(company);
     }
 
-    /**
-     *
-     * @param id
-     * @return
-     */
+
     @RequestMapping(path = "/del/{id}")
     public String delete(@PathVariable Long id) {
         companyService.delete(id);
         return "redirect:/company";
-    }
+    }*/
 }

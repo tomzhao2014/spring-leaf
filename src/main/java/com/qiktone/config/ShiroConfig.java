@@ -21,7 +21,7 @@ import java.util.Map;
  * Date: 2016/4/26 0026
  * Time: 17:20
  */
-@Configuration
+//aaa@Configuration
 public class ShiroConfig {
 
     @Bean
