@@ -19,4 +19,5 @@ public class ConstantServiceImpl extends BaseEntityService<Constant> implements 
     public EntityRepository<Constant> getEntityRepository() {
         return constantRepository;
     }
+
 }

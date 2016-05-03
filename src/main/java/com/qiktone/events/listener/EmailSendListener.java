@@ -16,7 +16,7 @@ public class EmailSendListener implements ApplicationListener<EmailSendEvent> {
     @Override
     @Async
     public void onApplicationEvent(EmailSendEvent event) {
-
+        System.out.println(222222222);
 
     }
 }

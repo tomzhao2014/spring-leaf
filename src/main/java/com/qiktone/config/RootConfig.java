@@ -32,6 +32,7 @@ import javax.sql.DataSource;
 @ComponentScan(basePackages={"com.qiktone.*"}, excludeFilters={@ComponentScan.Filter(type= FilterType.ANNOTATION, value=EnableWebMvc.class),
         @ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.qiktone.web.*Controller")})
 /*@Import({ShiroConfig.class})*/
+@Import({CacheConfig.class})
 public class RootConfig {
 
     private Log log = LogFactory.getLog(RootConfig.class);

@@ -1,7 +1,9 @@
 package com.qiktone;
 
 import com.qiktone.config.RootConfig;
+import com.qiktone.entity.Company;
 import com.qiktone.events.event.EmailSendEvent;
+import com.qiktone.service.DemoService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +29,11 @@ public class ShiroTest {
 
 
     @Test
+
     public void test1(){
-        System.out.println("==========================" + applicationContext.getBean("securityManager") + "==========================");
-        System.out.println("==========================" + applicationContext.getBean("shiroFilterFactoryBean") + "==========================");
-        System.out.println("==========================" + applicationContext.getBean("lifecycleBeanPostProcessor") + "==========================");
-        System.out.println("=========================="+ applicationContext.getBean("authorizationAttributeSourceAdvisor")+"==========================");
+        System.out.println("==========================" + applicationContext+ "==========================");
+
+
     }
 
     @Test
@@ -39,6 +41,17 @@ public class ShiroTest {
         System.out.println("1111111111");
         applicationContext.publishEvent(new EmailSendEvent("1323"));
         System.out.println("3333333333");
+    }
+
+    @Test
+    public void testCache(){
+        DemoService demoService = (DemoService)applicationContext.getBean("demoService");
+        Company company  = new Company();
+        demoService.findAccount0(company,true,true);
+        demoService.findAccount1(company,true,true);
+        demoService.findAccount2(company,true,true);
+        demoService.findAccount3(company,true,true);
+
     }
 
 }
