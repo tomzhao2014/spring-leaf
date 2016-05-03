@@ -54,9 +54,9 @@ public class RootConfig {
         log.debug(username);
        // log.debug(env.getProperty("jdbc.url"));
         DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setUrl("jdbc:mysql://10.99.3.100:3306/qik56?userUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/bxwd?userUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull");
         dataSource.setUsername("root");
-        dataSource.setPassword("snlkjn49#8@4&rl28dnm");
+        dataSource.setPassword("123456");
         dataSource.setInitialSize(1);
         dataSource.setMinIdle(1);
         dataSource.setMaxActive(19);
