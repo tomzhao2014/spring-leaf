@@ -1,7 +1,6 @@
 package com.qiktone;
 
 import com.qiktone.config.RootConfig;
-import com.qiktone.entity.Company;
 import com.qiktone.events.event.EmailSendEvent;
 import com.qiktone.service.DemoService;
 import org.junit.Test;

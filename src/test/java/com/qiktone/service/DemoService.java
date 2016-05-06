@@ -1,7 +1,6 @@
 package com.qiktone.service;
 
 import com.qiktone.entity.Account;
-import com.qiktone.entity.Company;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 

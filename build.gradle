@@ -19,7 +19,7 @@ apply plugin: "war"
 apply plugin: "idea"
 apply plugin: "org.akhikhl.gretty"
 apply plugin: "org.hidetake.ssh"
-group = "com.qiktone"
+group = "com.tomframework"
 version = "1.0"
 sourceCompatibility = 1.7
 
