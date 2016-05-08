@@ -1,3 +1,6 @@
 rootProject.name = 'TomFramework'
-
+include "core"
+include 'util'
+include 'web'
+include 'entity'
 

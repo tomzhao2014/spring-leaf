@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tomframework.repository.AccountRepository">
+    <select id="list" resultType="Account" >
+        select * from account
+    </select>
+    
+    <select id="findByCompay" resultMap="accountRS">
+        select a.id as aid,a.username,a.type,
+                s.descr as sdescr,s.code as scode,
+                r.id as rid,r.name as rname,r.type as rtype,
+               app.descr as appdescr,app.code as appcode
+        from account a
+        LEFT JOIN  constant s on s.code = a.state and s.type ='account_state_type'
+        LEFT JOIN  constant app on app.code = a.state and app.type ='app_type'
+        LEFT  JOIN  role r  ON  r.id = a.role_id
+        where a.company_id = #{cid}
+    </select>
+
+    <select id="getById"  resultMap="accountRS" parameterType="java.lang.Long">
+         select a.id as aid,a.username,a.type,
+                s.descr as sdescr,s.code as scode,
+                r.id as rid,r.name as rname,r.type as rtype,
+               app.descr as appdescr,app.code as appcode
+        from account a
+        LEFT JOIN  constant s on s.code = a.state and s.type ='account_state_type'
+        LEFT JOIN  constant app on app.code = a.state and app.type ='app_type'
+        LEFT  JOIN  role r  ON  r.id = a.role_id
+        where a.id = #{id}
+    </select>
+
+    <select id="login" resultType="Account" parameterType="java.lang.String">
+        select *
+        from account
+        where username = #{username} and password = #{password}
+    </select>
+
+    <resultMap id="accountRS" type="Account">
+        <id property="id" column="aid"></id>
+        <result property="username" column="username"></result>
+        <result property="type" column="type"></result>
+       <association property="astate" resultMap="stateRS"></association>
+        <association property="role" resultMap="roleRS"></association>
+    </resultMap>
+    
+    <resultMap id="roleRS" type="Role">
+        <id property="id" column="rid"></id>
+        <result property="type" column="rtype"></result>
+        <result property="name" column="rname"></result>
+    </resultMap>
+    
+    <resultMap id="stateRS" type="Constant">
+        <result property="code" column="scode"></result>
+        <result property="descr" column="sdescr"></result>
+    </resultMap>
+    
+    <resultMap id="appTypeRS" type="Constant">
+        <result property="code" column="appcode"></result>
+        <result property="descr" column="appdescr"></result>
+    </resultMap>
+
+
+    <insert id="insert" parameterType="Account">
+        insert into account (username,state,type,company_id,role_id,app_type)
+        VALUES (#{username},#{state},#{type},#{companyId},#{roleId},#{appType})
+    </insert>
+
+    <update id="update" parameterType="Account">
+        update account
+        set username = #{username},
+            state = #{state},
+            app_type = #{appType},
+            type = #{type},
+            role_id = #{roleId}
+        where id = #{id}
+    </update>
+
+</mapper>

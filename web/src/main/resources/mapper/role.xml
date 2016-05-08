@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tomframework.repository.RoleRepository">
+
+
+
+    <select id="list" resultType="Role" >
+        select * from role 
+    </select>
+
+    <!--根据公司id获取该公司的角色及其相关权限-->
+    <select id="getRoleByCompany" resultMap="roleRS">
+        select r.id,r.type,r.name,
+                m.name as mname, m.descr as mdescr,m.has_authority as mAuthority,
+                f.name as fname, f.descr as fdescr,f.has_authority as fAuthority,
+                o.name as oname, o.descr as odescr,o.has_authority as oAuthority
+        from role r
+        left join role_privilege m on m.role_id = r.id and m.type = 'module'
+        left join role_privilege f on f.role_id = r.id and f.type='function' and f.parent = m.name
+        left join role_privilege o ON o.role_id = r.id and o.type='op' and o.parent = f.name
+        where r.company_id = #{id}
+    </select>
+
+    <select id="getById"  resultType="Role" parameterType="java.lang.Long">
+        select * from role where id = ${id}
+    </select>
+    
+    <resultMap id="roleRS" type="Role">
+        <id property="id" column="id"></id>
+        <result property="type" column="type"></result>
+        <result property="name" column="name"></result>
+        <association property="modules" resultMap="moduleRS"/>
+    </resultMap>
+    
+    <resultMap id="moduleRS" type="RolePrivilege">
+        <id property="name" column="mname"></id>
+        <result property="descr" column="mdescr"></result>
+        <result property="hasAuthority" column="mAuthority"></result>
+        <association property="functions" resultMap="functionRS"></association>
+    </resultMap>
+
+    <resultMap id="functionRS" type="RolePrivilege">
+        <id property="name" column="fname"></id>
+        <result property="descr" column="fdescr"></result>
+        <result property="hasAuthority" column="fAuthority"></result>
+        <association property="ops" resultMap="opsRS"></association>
+    </resultMap>
+
+    <resultMap id="opsRS" type="RolePrivilege">
+        <id property="name" column="oname"></id>
+        <result property="descr" column="odescr"></result>
+        <result property="hasAuthority" column="oAuthority"></result>
+    </resultMap>
+
+</mapper>

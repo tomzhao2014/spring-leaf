@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tomframework.repository.HostRepository">
+
+    <select id="findAll" resultType="Host" >
+        select * from host
+    </select>
+    
+    <select id="queryShippingOrder"  resultType="com.tomframework.entity.vo.ShoppingOrderQuery">
+      SELECT
+    s.id,
+    s.number,
+    s.year_mark,
+    s.accept_date,
+    t.working_time,
+    t.arrived_date,
+    s.dispach_station_name,
+    s.dest_station_name,
+    s.consignor_name,
+    s.consignee_name,
+    s.consignor_contact,
+    s.consignee_contact,
+    s.consignor_phone,
+    s.consignee_phone,
+    s.consignor_address,
+    s.consignee_address,
+    s.goods_name,
+    s.package_name,
+    s.piece,
+    s.weight,
+    s.volume,
+    n.descr
+FROM
+    SHIPPING_ORDER s,
+    LOCAL_SHIPPING_ORDER l
+        LEFT JOIN
+    TRANSPORT_ORDER_RELATE_GOODS r ON r.local_shipping_order_id = l.id
+        LEFT JOIN
+    TRANSPORT_ORDER t ON t.id = r.transport_order_id
+        AND t.is_invalid = 0,
+    CONSTANT n
+WHERE
+    l.shipping_order_id = s.id
+        AND s.number = #{number}
+        AND n.type = 'shipping_order_state_type'
+        AND n.code = l.state
+        AND s.department_id = #{departmentId}
+ORDER BY t.working_time DESC
+
+    </select>
+</mapper>

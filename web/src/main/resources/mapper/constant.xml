@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tomframework.repository.ConstantRepository">
+    
+    <insert id="insert" parameterType="Constant" >
+        insert into constant (descr,type,code,seq,company_id)
+    values(#{descr},#{type},#{code},#{seq},#{companyId})
+    </insert>
+
+    <select id="getById" resultType="Constant" parameterType="java.lang.Long">
+        select * from constant where id = #{id}
+    </select>
+
+    <select id="list" resultMap="constantResult">
+        select c1.id AS conId,c1.type,c1.descr,c1.code,c1.seq,c2.id as comId,c2.name
+        from constant c1
+        LEFT join company c2 on c1.company_id = c2.id
+        order by c1.id DESC 
+    </select>
+
+    <select id="findByType" resultType="Constant" parameterType="java.lang.String">
+        select *
+        from constant
+        where type = #{type}
+    </select>
+
+
+
+    <update id="update" parameterType="Constant">
+        update constant
+        set descr = #{descr},
+        type = #{type},
+        code = #{code},
+        seq = #{seq},
+        company_id = #{companyId}
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from constant where id=#{id}
+    </delete>
+
+    <resultMap id="constantResult" type="Constant">
+        <id property="id" column="conId"></id>
+        <result property="type" column="type"></result>
+        <result property="descr" column="descr"></result>
+        <result property="code" column="code"></result>
+        <result property="seq" column="seq"></result>
+        <association property="company" column="company_id" javaType="com.tomframework.entity.Company" select="com.tomframework.repository.CompanyRepository.getById">
+            <id property="id" column="comId"></id>
+            <result property="name" column="name"></result>
+        </association>
+    </resultMap>
+
+</mapper>
